@@ -1,0 +1,18 @@
+<div id="socialbox">
+  <div class="external">
+    <a target=_blank" href="http://www.youtube.com/user/csoeffectiveness" title=" Follow Open Forum for CSO Development Effectiveness on Youtube">[(#CHEMIN{images/YouTube.png}|image_reduire{35})]</a>   
+    <!-- Facebook Badge START -->
+    <a target=_blank" href="http://www.facebook.com/pages/Open-Forum-for-CSO-Development-Effectiveness/106272822740128" title=" Follow Open Forum for CSO Development Effectiveness on Facebook" target="_TOP">[(#CHEMIN{images/Facebook.png}|image_reduire{35})]</a>
+    <!-- Facebook Badge END -->
+    <a target=_blank" href="http://www.twitter.com/CSOpenForum" title="Follow Open Forum for CSO Development Effectiveness on Twitter">[(#CHEMIN{images/Twitter.png}|image_reduire{35})]</a>
+     <!-- Youtube Badge END --> 
+     <a target=_blank" href="http://www.linkedin.com/groups?gid=2929172" title="Follow Open Forum for CSO Development Effectiveness on Linkedin">[(#CHEMIN{images/Linkedin.png}|image_reduire{35})]</a>     
+  </div>
+  <div class="internal">
+    <BOUCLE_rubrique(RUBRIQUES){id_trad=12}{lang}>
+    <a href="[(#URL_RUBRIQUE)]" title="<:subscribe_newsletter:>" ><img src="[(#CHEMIN{styles/img/email_100.png})]" alt="Newsletter"/></a>
+    </BOUCLE_rubrique>  
+    <a href="#URL_PAGE{backend}" title="<:syndiquer_site:>"><img src="[(#CHEMIN{styles/img/feed-icon-orange_100.png})]"  alt="RSS"/></a>
+  </div>
+  #FORMULAIRE_INSCRIVEZ_VOUS
+</div>

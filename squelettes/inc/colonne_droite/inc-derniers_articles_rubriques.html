@@ -1,0 +1,29 @@
+			[(#REM) Articles de la rubrique ]
+				<B_articles>
+				<div class="rightParagraph">
+					<h2 ><:articles_recents:></h2>
+
+						<BOUCLE_articles(ARTICLES) {id_rubrique !IN #ID_RUBRIQUE,6} {par date}{inverse} {0,5}{lang}>
+						<p>
+							<a href="#URL_ARTICLE">#TITRE</a>
+							<br>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]
+						</p>
+						</BOUCLE_articles>
+
+				</div>
+				</B_articles>
+					<B_articles_alter>
+						<div class="rightParagraph">
+							<h2 ><:articles_recents:></h2>
+						<BOUCLE_articles_alter(ARTICLES) {id_rubrique !IN #ID_RUBRIQUE,6} {par date}{inverse} {0,5}>
+						<p>
+							<a href="#URL_ARTICLE">#TITRE</a> [#LANG]
+							<br>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]
+						</p>
+						</BOUCLE_articles_alter>
+
+				</div>
+				</B_articles_alter>
+				
+
+				<//B_articles>

@@ -1,0 +1,64 @@
+#HTTP_HEADER{"HTTP/1.0 404 Not Found"}
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{Pragma: no-cache}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><:pass_erreur:> 404 - [(#NOM_SITE_SPIP|textebrut)]</title>
+(#REM) Preciser le charset ]
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+
+[(#REM) Fierement fabrique avec SPIP ]
+<meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
+
+[(#REM) Lien vers l'icone destinee a la barre de bookmarks ]
+[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+
+[(#REM) Lien vers le flux RSS du site ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:> [#ENV{lang}]" href="[(#URL_PAGE{backend}|parametre_url{lang,#ENV{lang}})]" />
+
+[(#REM) Feuille de style par defaut pour le code genere par SPIP ]
+<link rel="stylesheet" href="[(#CHEMIN{styles/spip_style.css}|direction_css)]" type="text/css" media="all" />
+
+[(#REM) Feuille de style CSS pour l'affichage du site a l'ecran ]
+<link rel="stylesheet" href="[(#CHEMIN{styles/habillage.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+	<!--[if IE]>
+<link rel="stylesheet" href="[(#CHEMIN{styles/styles_ie.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+	<![endif]-->
+
+[(#REM) Feuille de style CSS pour l'impression ]
+<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />
+<meta name="robots" content="none" />
+</head>
+
+<body class="page_plan">
+<div id="page-wrap">
+	<div id="inside">
+		[(#REM) Entete de la page + titre du site ]
+		<INCLURE{fond=inc/inc-entete}>
+
+		<div id="main-content">    
+        	[(#REM) Fil d'Ariane ]
+        		<div id="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on"><:pass_erreur:> 404</strong></div>
+
+			<div class="content">
+				<div class="twoColumnsRight">		
+				#FORMULAIRE_RECHERCHE
+        			</div>
+      				<div class="twoColumnsLeft">	
+					<div class="leftMainParagraph">
+        					<h1><:pass_erreur:> 404</h1>
+        					[<div class="chapo">(#ENV{erreur})</div>]
+					</div>
+				</div><!-- end twoColumnsLeft -->
+				
+			</div><!-- end content -->
+			<div class="clear">&nbsp;</div>
+		[(#REM) Pied de page ]
+		<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+		</div><!-- end main-content -->		
+	</div><!-- end inside -->	
+</div><!-- page-wrap -->
+</body>
+</html>

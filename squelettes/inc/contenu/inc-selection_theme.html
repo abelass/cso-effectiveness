@@ -1,0 +1,33 @@
+#CACHE{24*3600}
+
+[(#REM) Fait disparaître le menu de sélection si pas de résultat]
+<BOUCLE_groupe_mots_test(GROUPES_MOTS){id_groupe IN 1,2,3,4,5}{par titre}>
+<BOUCLE_articles_test(ARTICLES) {id_groupe}{lang}{0,1}>
+#SET{style#ID_GROUPE,style="display:visible;"} #SET{styleGroupe,style="display:visible;"}
+</BOUCLE_articles_test>
+</BOUCLE_groupe_mots_test>
+
+           <form method="post">   
+	   [(#REM)Affiche le menu de sélection de l'Afrique]
+<B_mots>	
+		<p class="SelectRight"><select id="menu2" class="forml" }
+		onchange="go2()">
+<BOUCLE_pays(MOTS) {id_mot=#ENV{id_mot}}{0,1}{id_groupe=2}>[<option selected="selected" value="">(#TITRE|unique)</option>] </BOUCLE_pays><option selected="selected" value=""><:select_theme:></option><//B_pays>
+<BOUCLE_mots(MOTS){id_groupe IN 7}{par titre}>
+<B_articles>
+[(#ID_MOT|!=={#ENV{id_mot}})<option value="[(#URL_RUBRIQUE|parametre_url{id_mot,#ID_MOT}|parametre_url{lang,#ENV{lang}})]">#TITRE</option>]
+<BOUCLE_articles(ARTICLES) {id_rubrique}{id_mot}{lang}{0,1}>
+</BOUCLE_articles>
+</BOUCLE_mots>
+		</select> </p>
+</B_mots>
+
+
+    </form> 
+    
+
+
+
+
+
+

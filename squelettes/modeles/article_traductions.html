@@ -1,0 +1,21 @@
+[(#REM)
+	Affiche les traductions disponibles d'un article.
+	La langue de l'article courant s'affiche en gras, sans lien.
+][(#REM)
+
+	Note : le lien <a rel="alternate" hreflang="xx" ...> indique qu'il
+	s'agit d'une traduction (version alternative dans la langue xx)
+
+]<BOUCLE_article(ARTICLES){id_article}>
+<B_traductions>
+
+	<BOUCLE_traductions(ARTICLES) {traduction} >[
+	(#TOTAL_BOUCLE|>{1}|?{' '})
+	<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
+		<a [ class="(#EXPOSE)"] href="/?action=cookie&url=#URL_ARTICLE&var_lang=#LANG" rel="alternate" hreflang="#LANG"[ title="(#TITRE|texte_backend)"]>
+		[(#LANG|traduire_nom_langue)]</a>
+	</li>
+	]</BOUCLE_traductions>
+
+</B_traductions>
+</BOUCLE_article>

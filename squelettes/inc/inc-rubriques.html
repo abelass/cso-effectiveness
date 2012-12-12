@@ -1,0 +1,26 @@
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site. ]
+
+<B_rubriques>
+
+	<ul id="SubNavi">
+	<BOUCLE_rubriques(RUBRIQUES) {id_parent IN 91,92,93} {lang}{id_rubrique !IN 12,9,5,56}{par num titre, titre}{tout}>
+		<li>
+			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+			<B_sous_rubriques>
+			<ul>
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {id_rubrique !IN 38}{par num titre, titre}{tout}>
+					<li [(#COMPTEUR_BOUCLE|=={'1'}|?{'class="first"'})]><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_rec(BOUCLE_sous_rubriques)></BOUCLE_rec>	</li>
+					
+				</BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+		</li>
+	</BOUCLE_rubriques>
+
+	</ul>
+
+</B_rubriques>

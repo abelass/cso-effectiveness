@@ -1,0 +1,31 @@
+#CACHE{0}
+[(#REM) Afficher le logo ou le titre du site ]
+<ul id="utilities">
+<li><a href="#URL_SITE_SPIP/"><:accueil_site:></a></li>
+
+
+<B_Articles>
+<BOUCLE_Articles(ARTICLES){id_article}>
+        [(#REM) Inclure le modele des liens de traductions ]
+        #MODELE{article_traductions}
+</BOUCLE_Articles>
+</B_Articles>
+  
+  [(#REM) les rubriques]
+   <BOUCLE_rubs(RUBRIQUES){id_rubrique}{tout}>
+     <BOUCLE_rubs_trads(RUBRIQUES){id_trad=#ID_TRAD}{id_trad>0}{tout}> 
+    <li class="langues"><a href="[(#URL_ACTION_AUTEUR{'converser',#VALEUR&var_lang=#LANG,[(#URL_RUBRIQUE)]})]"  [(#ENV{lang}|=={#LANG}|oui) class="on"]>[(#LANG|traduire_nom_langue)]</a></li>
+    </BOUCLE_rubs_trads>  
+   </BOUCLE_rubs>
+<//B_Articles>
+<li><div class="recherche">#FORMULAIRE_RECHERCHE</div></li>
+       <li><INCLURE{fond=inc/colonne_droite/inc-social_box}></li>
+</ul>
+<div id="mainNavi"><a href="#URL_SITE_SPIP" title="<:accueil_site:>"><img src="[(#CHEMIN{/styles/img/cso_logo_#LANG.gif})]" width="556" height="106" alt="logo" /></a>
+<INCLURE{fond=inc/inc-text_scroll} {id_rubrique=56}{lang}/>
+[(#REM) Menu de navigation par rubriques ]
+<INCLURE{fond=inc/inc-rubriques}{id_rubrique}>
+</div><!-- end mainNavi -->
+
+
+

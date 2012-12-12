@@ -1,0 +1,19 @@
+		<BOUCLE_rubrique(RUBRIQUES){id_parent}{!par date}>
+			[(#REM) Articles de la rubrique ]
+				<B_articles>				
+				<div>
+				<h2><a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]" title="#TITRE">#TITRE</a></h2>
+					#ANCRE_PAGINATION
+
+					<ul>
+						<BOUCLE_articles(ARTICLES) {id_rubrique} {par date}{inverse} {pagination}>
+						<li>
+							<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+							<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+						</li>
+						</BOUCLE_articles>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+				</B_articles>
+		</BOUCLE_rubrique>

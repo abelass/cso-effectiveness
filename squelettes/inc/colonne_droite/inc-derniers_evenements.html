@@ -1,0 +1,20 @@
+#CACHE{7200} 
+<B_lesevenements>
+<div class="rightParagraph">
+<h2><:prochaine_evenement:></h2>
+<BOUCLE_titre_mot(MOTS) {id_mot}><h3>#TITRE</h3></BOUCLE_titre_mot>
+<BOUCLE_titre_mot_continent(GROUPES_MOTS) {id_groupe=#ENV{id_groupe}}><h3>#TITRE</h3></BOUCLE_titre_mot_continent>
+
+[(#REM)Afficher les evenements du même pays ]
+<BOUCLE_lesevenements(ARTICLES){id_rubrique}{0,5}{par date}{date>=#DATE}{id_mot ?}{id_groupe ?}{exclus}>
+
+<p class="spip"><a href="[(#URL_ARTICLE)]" title="#TITRE"> 
+[(#TITRE|supprimer_numero|couper{80})]</a><br/>
+#DATE<br/>
+<BOUCLE_pays(MOTS) {id_article}{id_groupe IN 1,2,3,4,5}> - #TITRE</BOUCLE_pays>
+</p>
+  </BOUCLE_lesevenements>
+
+<p><a href="#URL_RUBRIQUE{6}" title="Agenda"><:agenda_complete:></a></p>
+</div>
+  </B_lesevenements>

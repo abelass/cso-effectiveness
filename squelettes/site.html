@@ -1,0 +1,76 @@
+#CACHE{7200}
+<BOUCLE_site(SITES){id_syndic}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+[(#REM) Les sites n'ont pas de "lang" a proprement parler ; on se base donc sur la langue de la rubrique qui les contient. Les articles syndiques, eux, ont une "lang". ]
+<BOUCLE_lang(RUBRIQUES){id_rubrique}><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR"></BOUCLE_lang>
+<head>
+<title>[(#NOM_SITE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="description" content="[(#DESCRIPTIF|couper{150}|textebrut)]<B_mots_cles>, <BOUCLE_mots_cles(MOTS) {id_syndic} {', '}>#TITRE</BOUCLE_mots_cles>" />
+<INCLURE{fond=inc/inc-head}>
+<meta name="robots" content="none" />
+</head>
+
+<body class="page_site">
+<div id="page-wrap">
+		<div id="inside">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}>
+
+<div id="main-content">
+	[(#REM) Fil d'Ariane ]
+	<div id="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_syndic}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; (#NOM_SITE|couper{80})]</div>
+
+<div class="content">
+		<div class="twoColumnsRight">	
+<INCLURE {fond=inc/colonne_droite/inc-articles_relationnes_rubrique}{id_rubrique}{id_mot=#ENV{id_mot}} {id_groupe=#ENV{id_groupe}}>
+<INCLURE{fond=inc/colonne_droite/inc-shortcuts}{lang}>				
+<INCLURE {fond=inc/colonne_droite/inc-derniers_messages}>
+<INCLURE {fond=inc/colonne_droite/inc-derniers_evenements}{id_mot=#ENV{id_mot}}{id_groupe=#ENV{id_groupe}}>
+				</div><!-- end twoColumnsRight -->
+
+		[(#REM) Contenu principal : affichage du site ]
+				<div class="twoColumnsLeft">	
+				<div class="leftMainParagraph">	
+
+				<h1 class="#EDIT{nom_site} titre">#NOM_SITE</h1>
+				<a href="#URL_SITE">[(#LOGO_SITE||image_reduire{150,100})]</a>
+				[<p class="#EDIT{url_site} soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{80})</a></p>]
+
+			[<div class="#EDIT{descriptif} chapo">(#DESCRIPTIF)</div>]
+
+			[(#REM) Articles issus de la syndication ]
+			<B_articles>
+				#ANCRE_PAGINATION
+
+				<ul class="circle">
+					<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {pagination 5}>
+					<li>
+						<h4 class="titre"><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></h4>
+						[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
+						<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
+						[<div class="texte">(#DESCRIPTIF|image_reduire{300})
+						<br class="nettoyeur" /></div>]
+					</li>
+					</BOUCLE_articles>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</B_articles>
+
+			[<div class="notes"><h3><:info_notes:></h3>(#NOTES)</div>]
+
+				</div><!-- end twoColumnsLeft -->
+				
+</div><!-- end content -->
+<div class="clear"></div>
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</div><!-- end main-content -->		
+</div><!-- end inside -->	
+</div><!-- page-wrap -->
+</body>
+</html>
+</BOUCLE_site>

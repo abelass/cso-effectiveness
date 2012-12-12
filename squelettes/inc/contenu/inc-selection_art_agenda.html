@@ -1,0 +1,14 @@
+#CACHE{24*3600}
+
+	<form method="post">   
+	<select id="menu" class="forml"
+        onchange="go()">
+	<option selected="selected" value=""><:choisir_groupe:></option>	
+
+<BOUCLE_articles(ARTICLES) {id_rubrique}>
+
+	[<option value="[(#URL_ARTICLE|parametre_url{ajout_evenement,oui}|parametre_url{editer,oui}|parametre_url{lang,#ENV{lang}})]">#TITRE</option>
+
+</BOUCLE_articles>
+	</select> 	
+	</form> 

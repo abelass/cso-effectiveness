@@ -1,0 +1,71 @@
+#FILTRE{compacte_head}
+[(#REM)
+	Eviter les boutons d'admin sur la page de login
+]
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta name="robots" content="none" />
+<meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
+[(#REM) Preciser le charset ]
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+
+[(#REM) Fierement fabrique avec SPIP ]
+<meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
+
+[(#REM) Lien vers l'icone destinee a la barre de bookmarks ]
+[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+
+[(#REM) Lien vers le flux RSS du site ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:> [#ENV{lang}]" href="[(#URL_PAGE{backend}|parametre_url{lang,#ENV{lang}})]" />
+
+[(#REM) Feuille de style par defaut pour le code genere par SPIP ]
+<link rel="stylesheet" href="[(#CHEMIN{styles/spip_style.css}|direction_css)]" type="text/css" media="all" />
+
+[(#REM) Feuille de style CSS pour l'affichage du site a l'ecran ]
+<link rel="stylesheet" href="[(#CHEMIN{styles/habillage.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+	<!--[if IE]>
+<link rel="stylesheet" href="[(#CHEMIN{styles/styles_ie.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+	<![endif]-->
+
+[(#REM) Feuille de style CSS pour l'impression ]
+<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />
+[(#REM|f_jQuery)]
+<script type='text/javascript'><!--
+jQuery(function(){ jQuery('input#var_login').focus();
+jQuery('a#spip_pass').click(function(){window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=330'); return false;});
+});
+// --></script>
+</head>
+<body class="page_plan">
+<div id="page-wrap">
+	<div id="inside">
+		[(#REM) Entete de la page + titre du site ]
+		<INCLURE{fond=inc/inc-entete}>
+
+		<div id="main-content">    
+        	[(#REM) Fil d'Ariane ]
+        		<div id="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a></div>
+
+			<div class="content">
+      				<div class="twoColumnsLeft">	
+					<div class="leftMainParagraph">
+
+					<h1>#NOM_SITE_SPIP</h1>
+	
+					#LOGIN_PUBLIC 
+        				</div>
+				
+			</div><!-- end content -->
+			<div class="clear">&nbsp;</div>
+		[(#REM) Pied de page ]
+		<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+		</div><!-- end main-content -->		
+	</div><!-- end inside -->	
+</div><!-- page-wrap -->
+
+</body>
+</html>

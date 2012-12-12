@@ -1,0 +1,101 @@
+#CACHE{86400}
+<BOUCLE_mot_principal(MOTS) {id_mot} {doublons}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
+<INCLURE{fond=inc/inc-head}>
+[(#REM) Lien vers le flux RSS du mot cle ]
+<link rel="alternate" type="application/rss+xml" title="[(#TITRE|textebrut|texte_backend)]" href="[(#URL_PAGE{backend}|parametre_url{id_mot,#ID_MOT})]" />
+</head>
+
+<body class="page_mot">
+<div id="page-wrap">
+	<div id="inside">
+	
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}>
+
+		<div id="main-content">
+	[(#REM) Fil d'Ariane ]
+			<div id="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:mots_clefs:><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> &gt; [(#TITRE|couper{80})]</BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]</div>
+
+		<div class="twoColumnsRight">
+			[(#REM) Menu de navigation mots-cles : les autres mots cles du meme groupe ]
+			<B_mots_freres>
+			<div class="rightParagraph">
+				[<p class="pagination">(#PAGINATION)</p>]
+				<h2 class="menu-titre"><:mots_clefs_meme_groupe:></h2>
+					<BOUCLE_mots_freres(MOTS) {type} {par titre} {pagination 20}>
+					<p><a href="#URL_MOT"[ class="(#EXPOSE)"]>#TITRE</a></p>
+					</BOUCLE_mots_freres>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_mots_freres>
+[(#REM) Menu de navigation mots-cles : les autres groupes avec un lien sur le premier mot du groupe ]
+			<B_groupes_freres>
+			<div class="rightParagraph">
+				<h2 class="menu-titre"><:autres_groupes_mots_clefs:></h2>
+					<BOUCLE_groupes_freres(GROUPES_MOTS) {par titre} {doublons}{id_groupe != 6}>
+					<BOUCLE_mot_cousin(MOTS) {id_groupe} {par titre} {0,1}>
+					<p><a href="#URL_MOT">#TYPE</a></p>
+					</BOUCLE_mot_cousin>
+					</BOUCLE_groupes_freres>
+
+			</div>
+			</B_groupes_freres>			
+			<INCLURE{fond=inc/colonne_droite/inc-shortcuts}{lang}>	
+					</div><!-- end twoColumnsRight -->
+				
+
+		[(#REM) Contenu principal : contenu du mot-cle ]
+				<div class="twoColumnsLeft">	
+				<div class="leftMainParagraph">	
+			<div>
+				<h1 class="#EDIT{titre} titre">#TITRE</h1>
+				[<div class="logo">(#LOGO_MOT||image_reduire{200,200})</div>]				
+			</div>
+
+			[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+
+
+			[(#REM) Articles lies au mot-cle ]
+			<B_articles>
+			<div class="contre-encart">
+
+				<div class="liste-articles">
+					#ANCRE_PAGINATION
+					<h2><:articles:></h2>
+					<ul class="circle">
+						<BOUCLE_articles(ARTICLES) {id_mot} {par popularite}{inverse} {pagination 10}>
+						<li>
+						<a href="#URL_ARTICLE">#TITRE</a>
+						<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small></li>
+						</BOUCLE_articles>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+
+			</div><!-- fin contre-encart -->
+			</B_articles>
+
+
+
+			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+
+				
+				</div><!-- end twoColumnsLeft -->
+				
+</div><!-- end content -->
+<div class="clear"></div>
+
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+</div><!-- end main-content -->		
+</div><!-- end inside -->	
+</div><!-- page-wrap -->
+</body>
+</html>
+</BOUCLE_mot_principal>

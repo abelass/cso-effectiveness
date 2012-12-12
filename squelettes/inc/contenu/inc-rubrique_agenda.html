@@ -1,0 +1,42 @@
+#CACHE{7200}
+
+
+	<div id="event_container_intranet">
+						<BOUCLE_article_annes(EVENEMENTS){par date}{age<=0}>
+
+<B_lesevenements_edit>
+		
+<div class="events"><a href="[(#URL_RUBRIQUE{6}|parametre_url{page,agenda}|parametre_url{annee,[(#DATE_DEBUT|annee)]}|parametre_url{mois,[(#DATE_DEBUT|mois)]}|parametre_url{jour,1}|parametre_url{lang,#LANG})]" title="[(#DATE_DEBUT|nom_mois)]"><h3>[(#DATE_DEBUT|nom_mois)] [(#DATE_DEBUT|annee|unique)]</h3></a> 
+<ul class="circle">
+<BOUCLE_lesevenements_edit(EVENEMENTS){agendafull date_debut,date_fin, mois,  (#DATE_DEBUT|annee), (#DATE_DEBUT|mois)}{id_mot?}{par date}{tout}{doublons}{age<=0}>
+<li><a href="[(#URL_ARTICLE|parametre_url{id_evenement,#ID_EVENEMENT}|parametre_url{date,#DATE_DEBUT})]" title="#TITRE">[(#TITRE|supprimer_numero|couper{80})]</a>
+ <br/><small>[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+  [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+[(#HORAIRE|=={oui}|?{
+   [(#REM) memes heures ?]
+     [(#DATE_DEBUT|=={#DATE_FIN}|?{ <:a:>  
+[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+   [(#REM) pas memes heures ?]
+     [(#DATE_DEBUT|!={#DATE_FIN}|?{<:from:> 
+[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] <:a:>
+[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+,''})]
+,
+ [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+[(#HORAIRE|=={oui}|?{ : 
+  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] <:a:> 
+[(#DATE_FIN|nom_jour)]
+  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{ : 
+  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]
+[-&nbsp;<:lieu:>&nbsp;: (#LIEU)]<BOUCLE_pays(MOTS) {id_evenement}{id_groupe IN 1,2,3,4,5}> - #TITRE</BOUCLE_pays></small>
+</li>
+
+  </BOUCLE_lesevenements_edit>
+  </ul>
+			</div>
+	  </B_lesevenements_edit>
+
+		  </BOUCLE_article_annes>
+			</B_article_annes>			
+                        </div>
+  <br class="nettoyeur">

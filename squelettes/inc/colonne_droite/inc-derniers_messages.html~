@@ -1,0 +1,9 @@
+[(#REM)Liste les forums de la langue]				
+<B_forums_liens>
+	<div class="rightParagraph">
+		<h2><:derniers_commentaires:></h2>
+		<BOUCLE_forums_liens(FORUMS) {articles.lang}{plat} {par date}{inverse} {0,5}>
+			<p>[(#DATE|affdate_court) &ndash; ]<a href="[(#URL_FORUM|parametre_url{lang,#ENV{lang}})]">#TITRE</a></p>
+		</BOUCLE_forums_liens>
+	</div>
+</B_forums_liens>

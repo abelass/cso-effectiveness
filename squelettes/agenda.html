@@ -1,0 +1,58 @@
+#CACHE{0}
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title><:icone_agenda:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inc/inc-head}>
+<meta name="robots" content="none" />
+<link rel="stylesheet" href="#CHEMIN{styles/agenda.css}" type="text/css" /> 
+<link rel="stylesheet" href="#CHEMIN{styles/calendrier.css}" type="text/css" /> 
+<script type="text/javascript" src="#EVAL{_DIR_JAVASCRIPT}layer.js"> </script> 
+<script type="text/javascript" src="#EVAL{_DIR_JAVASCRIPT}presentation.js"> </script> 
+</head>
+
+<body class="page_agenda">
+<div id="page-wrap">
+		<div id="inside">
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}{id_rubrique}>
+
+<div id="main-content">
+				<div id="ie-container">
+	[(#REM) Fil d'Ariane ]
+	<div id="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique=6}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane> &gt; Agenda</div>
+<div class="content">		
+	<div class="twoColumnsRight">
+		<INCLURE{fond=inc/colonne_droite/inc-shortcuts}{lang}>		
+		<INCLURE{fond=inc/colonne_droite/inc-derniers_evenements}>
+		<INCLURE{fond=inc/colonne_droite/inc-derniers_articles_rubriques}>
+		<INCLURE{fond=inc/colonne_droite/inc-derniers_messages}{id_article}>
+		</div><!-- end twoColumnsRight -->	
+		
+		[(#REM) Contenu principal : contenu de la rubrique ]
+				<div class="twoColumnsLeft">	
+				<div class="leftMainParagraph">
+<div style="float:right; font-size:0.8em;">
+<p><a href="[(#URL_RUBRIQUE{6}|parametre_url{lang,#ENV{lang}})]" title="<:monthly_view:>"<:monthly_view:>"><:monthly_view:></a></p>
+
+
+#FORMULAIRE_EDITION_EVENEMENT
+</div>				
+[(#ENV{type, mois}|agenda_connu)<INCLURE {fond=agenda_#ENV{type,mois}} {type} {delais=1800} {annee=#ENV{annee}} {mois=#ENV{mois}} {jour} {echelle} {partie_cal} {theme}{id_rubrique=#ENV{id_rubrique}}>]
+				</div><!-- leftMainParagraph -->
+				</div><!-- end twoColumnsLeft -->
+</div><!-- end content -->
+<div class="clear"></div>
+
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+					</div><!-- end ie-container -->
+</div><!-- end main-content -->		
+</div><!-- end inside -->
+</div><!-- page-wrap -->	
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}{tout}>
+  
+[(#REM) Redirection des liens de traduction faites avec lang=#ENV{lang} (traduction avec balises multi) vers les nouvelles rubriques]
+<INCLURE{fond=inc/redirection}{lang_rub=#LANG}{lang_env=#ENV{lang}}{id_trad}/>
+  
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="description" content="[(#INTRODUCTION|?{[(#INTRODUCTION|couper{150}|textebrut)],[(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)]})]<B_mots_cles>, <BOUCLE_mots_cles(MOTS) {id_rubrique}{', '}>#TITRE</BOUCLE_mots_cles>" />
+<INCLURE{fond=inc/inc-head}>
+[(#ID_TRAD|=={87}|oui)
+<script type="text/javascript">
+$("document").ready(function() {
+    $("a.pop_up").trigger('click');
+});
+</script>
+]
+[(#REM) Lien vers le flux RSS de la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:> [#ENV{lang}]" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE}|parametre_url{lang,#ENV{lang}})]" />
+</head>
+
+<body class="page_rubrique">
+  <div id="page-wrap">
+    <div id="inside">
+    
+  [(#REM) Entete de la page + titre du site ]
+  <INCLURE{fond=inc/inc-entete}{id_rubrique}>
+  
+      <div id="main-content">
+        <div id="ie-container">
+  [(#REM) Fil d'Ariane ]
+      <div id="breadcrumb"><BOUCLE_ariane(HIERARCHIE){id_rubrique}{' &gt; '}><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane> &gt; </B_ariane>[(#TITRE|couper{80})]</div>
+
+        <div class="content">
+          <div class="twoColumnsRight">
+            <INCLURE{fond=inc/colonne_droite/inc-petitions_rubrique}{env}{ajax}>  
+            <INCLURE{fond=inc/colonne_droite/inc-shortcuts}{lang}>    
+            <INCLURE {fond=inc/colonne_droite/inc-derniers_messages}>
+          [(#ID_TRAD|=={91}|oui)    
+            <INCLURE {fond=inc/colonne_droite/syndications}>
+            ]
+              
+          </div><!-- end twoColumnsRight -->
+    
+    
+    [(#REM) Contenu principal : contenu de la rubrique ]
+        <div class="twoColumnsLeft">  
+        <div class="leftMainParagraph">
+
+  
+        <h1 class="#EDIT{titre} titre">[(#ID_TRAD|=={91}|?{<:about_site:>,#TITRE})]</h1> 
+        [<div class="logo">(#LOGO_RUBRIQUE|image_reduire{200,200})</div>]
+        <div class="#EDIT{texte} chapo">
+          [(#ID_TRAD|=={91}|non)
+          <div class="enviar">
+            #ENVIAR_EMAIL**
+            <INCLURE{fond=inc/contenu/share}{env}/>
+          </div>
+          ]
+          [(#ID_TRAD|=={91}|oui)
+          #SET{id_rubrique,#INCLURE{fond=inc/traductions_rubriques}{id_trad}}
+          
+          <div class="cycles_gal">
+            [(#MODELE{sjcycle_rubrique}{id_sjcycle=XX,width=350,height=300}{id_rub=#GET{id_rubrique}|unserialize})]
+            </div>]
+          #TEXTE</div>
+  
+          
+          
+      [(#REM) Contenu rubrique home]      
+      [(#ID_TRAD|=={91}|oui)
+        <INCLURE{fond=inc/contenu/home}/>
+        ]    
+          
+
+        [(#REM) Documents joints a la rubrique ]
+        <B_documents_joints>
+        <div id="documents_joints">
+          <h2><:titre_documents_joints:></h2>
+          <ul class="circle">
+            <BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {id_trad !IN 45,1} {mode=document}{tout} {par num titre, date} {doublons}>
+            <li>
+              <div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+              [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+            </li>
+            </BOUCLE_documents_joints>
+          </ul>
+        </div>
+        </B_documents_joints>
+          <B_documents_joints_trad>
+          <div id="documents_joints">
+            <h2><:titre_documents_joints:></h2>
+            <ul class="circle">
+              <BOUCLE_documents_joints_trad(DOCUMENTS){id_trad !IN 45,1} {id_rubrique=#ID_TRAD} {mode=document} {par num titre, date} {doublons}>
+              <li>
+                <div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+                [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+              </li>
+              </BOUCLE_documents_joints_trad>
+            </ul>
+          </div>
+          </B_documents_joints_trad>        
+        <//B_documents_joints>
+
+  
+  
+    [(#REM) Formulaire inscription rubrique Newsletter]    
+    [(#ID_TRAD|=={12}|oui)
+      
+        [<!--(#REM) si un cookie est passé OU si un auteur est connecté
+          on affiche le formulaire de gestion d'abonnement -->]
+      
+      [(#ENV{d}|oui|ou{#SESSION{id_auteur}|oui})
+        #FORMULAIRE_GESTION_ABONNEMENT]
+      
+      [<!--(#REM) sinon formulaire d'inscription -->]
+      
+      [(#ENV{d}|non|et{#SESSION{id_auteur}|non})
+        <div class="message-formulaire">
+          <p><:spiplistes:abonnement_explication:></p>
+        </div>
+        #FORMULAIRE_SPIP_LISTES_INSCRIPTION]
+      
+      </div>
+      [<!--(#REM)
+      <p class="center"><a href='#URL_SITE_SPIP'><:pass_retour_public:></a></p>
+      <div class='spiplistes-cdt'><:spiplistes:abonnement_cdt:></div>
+      -->]
+  
+      </div > <!-- end leftMainParagraph -->
+    ]
+
+    [(#REM) Rubrique Open Forum Consultations  à priori désactivé  
+    [(#ID_TRAD|=={6}|oui)
+      <INCLURE  {fond=inc/contenu/inc-rubrique_open_forum_regions}{id_rubrique}{env}>
+      <INCLURE  {fond=inc/contenu/inc-rubrique_open_forum_themes}{id_rubrique}{env}>      
+      ]
+      ]
+    
+    [(#REM) Rubrique Blog]    
+    [(#ID_TRAD|=={8}|oui)
+      [(#REM) Calcul des rubriques traduites]
+      #SET{id_rubrique,#INCLURE{fond=inc/traductions_rubriques}{id_trad}}
+      <INCLURE  {fond=inc/contenu/inc-rubrique_blog}{env}{ajax}{id_rubrique=#GET{id_rubrique}|unserialize}>
+        ]
+    
+    [(#REM) Image Gallery]    
+    [(#ID_TRAD|=={45}|oui)
+      [(#REM) Calcul des rubriques traduites]
+      #SET{id_rubrique,#INCLURE{fond=inc/traductions_rubriques}{id_trad}}
+      <INCLURE  {fond=inc/contenu/inc-rubriques_art_gal}{env}{ajax}{id_trad}{id_rubrique=#GET{id_rubrique}|unserialize}>
+        ]
+    
+    [(#REM) Intranet]    
+    [(#ID_TRAD|=={46}|oui)<INCLURE  {fond=inc/contenu/inc-rubrique_intranet}{env}{ajax}>]    
+        
+                
+        [(#REM) Sites de la rubrique ]
+        <B_sites>
+            <BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+
+              [(#REM) Articles issus de la syndication ]
+          <INCLURE{fond=inc/contenu/inc-articles_sites}{id_syndic}{env}{ajax}/>
+
+            </BOUCLE_sites>
+        </B_sites>
+
+        [(#REM) Proposer un site ]
+        #FORMULAIRE_SITE
+
+
+
+      [<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+        
+      [(#ID_TRAD|!=={'9'}|?{' ',''})[(#ID_TRAD|!=={'7'}|?{' ',''})[(#ID_TRAD|!=={'13'}|?{' ',''})[(#ID_TRAD|!=={'12'}|?{' ',''})</div > <!-- end leftMainParagraph -->]]]]  
+        </div><!-- end twoColumnsLeft -->
+        
+          </div><!-- end content -->
+          <div class="clear"></div>
+
+  [(#REM) Pied de page ]
+  <INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+        </div><!-- end ie-container -->
+      </div><!-- end main-content -->    
+    </div><!-- end inside -->  
+  </div><!-- page-wrap -->
+</body>
+</html>
+</BOUCLE_rubrique_principal>
+[(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{' ',''})    
+<INCLURE{fond=login_public}{env}{url=#SELF}/>]
+[(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{'',' '})
+<INCLURE{fond=404}{env}/>]
+<//B_rubrique_principal>

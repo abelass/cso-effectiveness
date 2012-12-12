@@ -1,0 +1,91 @@
+[(#REM) Affichage du formulaire de recherche avancee]
+	<div class="formulaire_spip formulaire_recherche_avancee" style=>
+		<a name="formulaire_recherche" id="formulaire_recherche"></a>
+		<form action="spip.php?page=recherche" method="get" >
+		<table><thead><tr><td colspan=2>
+			<h2 style="font-weight:bold"><:rechercheavancee:recherche_avancee:></h2>
+		</td></tr></thead><tbody>
+
+    <tr><td>
+			<input name='page' value='recherche' type='hidden' />
+			<input name='avancee' value='1' type='hidden' />
+            <input name='lang' value='#ENV{lang}' type='hidden' />
+		
+	<!-- la chaine cherchee -->
+			<label for="recherche"><:rechercheavancee:contenant:></label>
+		</td><td>
+			<input type="text" class="forml" name="recherche" id="recherche" value="[(#ENV{recherche}|sinon{<:info_rechercher:>" onfocus="this.value='';})]" />
+		</td></tr>
+
+<!--
+		<tr><td>
+			<label class="forml"><:rechercheavancee:titre:></label>
+		</td><td>
+			<input type="text" class="forml" name="titre" id="titre" value="#ENV{titre}"  />
+		</td></tr>
+-->
+
+	<!-- DATE -->
+    <tr><td>
+			<label style="border:0px solid; width:500px"><:rechercheavancee:limiter_date:></label>
+		</td><td>
+			<select name="depuis">
+				<option value="" style="color:silver" ><:rechercheavancee:nodate:></option>
+				<option value="91" [(#ENV{depuis}|=={91}?{"SELECTED"})]><:rechercheavancee:3mois:></option>
+				<option value="182" [(#ENV{depuis}|=={182}?{"SELECTED"})]><:rechercheavancee:6mois:></option>
+				<option value="365" [(#ENV{depuis}|=={365}?{"SELECTED"})]><:rechercheavancee:1an:></option>
+			</select>
+		</td></tr>
+			
+	<!-- RUBRIQUE -->
+    <B_surrub>
+    <tr><td>
+			<label style="border:0px solid; width:500px"><:rechercheavancee:limiter_rub:></label>
+		</td><td>
+			<select name="id_rubrique" >
+				<Option value="" style="color:silver"><:rechercheavancee:allrub:></option>
+				<BOUCLE_surrub(RUBRIQUES){racine}>
+					<Option value="#ID_RUBRIQUE" [(#ENV{id_rubrique}|=={#ID_RUBRIQUE}?{"SELECTED"})]>#TITRE </option>
+				</BOUCLE_surrub>
+			</select>
+		</td></tr>
+    </B_surrub>
+
+	<!-- MOT-CLE -->
+			<B_groupes_freres>
+
+     					<BOUCLE_groupes_freres(GROUPES_MOTS) {par titre} {doublons} {id_groupe !IN 6,8,9}>
+			     <tr><td>		
+			<label style="border:0px solid; width:500px">#TITRE</label>
+		</td><td>
+			<select name="id_mot" >
+				<option value="" style="color:silver"><:rechercheavancee:all:></option>
+				<B_surmot>
+				<BOUCLE_surmot(MOTS) {id_groupe}{par titre}>
+					<option value="#ID_MOT" [(#ENV{id_mot}|=={#ID_MOT}?{"SELECTED"})]>#TITRE </option>
+				</BOUCLE_surmot>
+				</B_surmot>
+			</select>
+					</td></tr>
+					</BOUCLE_groupes_freres>			
+
+			</B_groupes_freres>		
+
+	<!-- TRIE -->
+     <tr><td>
+			<label style="border:0px solid; width:500px"><:rechercheavancee:trie_par:></label>
+		</td><td>
+			<select name="tri" >
+				<Option value="points"><:rechercheavancee:point:></option>
+				<Option value="date" [(#ENV{tri}|=={date}?{"SELECTED"})]><:date:></option>
+				<Option value="id_rubrique" [(#ENV{tri}|=={id_rubrique}?{"SELECTED"})]><:rubrique:></option>
+				<Option value="popularite" [(#ENV{tri}|=={popularite}?{"SELECTED"})]><:popularite:></option>
+			</select>
+		</td></tr>
+
+    <tr><td></td><td>
+			<input type="submit" class="bouton" value="<:rechercheavancee:rechercher:>" />
+
+		</td></tr></tbody></table>
+		</form>
+	</div>				

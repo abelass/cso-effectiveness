@@ -1,0 +1,42 @@
+#CACHE{24*3600}
+		[(#REM) Titre pays selectionné]
+		<BOUCLE_mot(MOTS){id_mot}>
+		<h3 id="liste">#TITRE</h3>
+		</BOUCLE_mot>
+		[(#REM) Titre continent selectionné]		
+		<BOUCLE_groupe(GROUPES_MOTS){id_groupe}>
+		<h3 id="liste">#TITRE</h3>
+		</BOUCLE_groupe>
+
+		[(#REM) Articles de la rubrique plus récent]
+		<B_articles_recents>
+
+					<BOUCLE_articles_recents(ARTICLES){id_groupe IN 1,2,3,4,5} {par date}{inverse} {0,1} {doublons}{lang}>
+					<BOUCLE_mot_titre(MOTS){id_article}{id_groupe IN 1,2,3,4,5}>#SET{titre_mot,#TITRE}</BOUCLE_mot_titre>
+					<div class="iecorrect">
+						<h2><a href="#URL_ARTICLE">#TITRE</a> - #GET{titre_mot}</h2>
+						[<div class="logo_rub">(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{150,100})</div>]						
+						<p><small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
+						[<p class="#EDIT{intro} texte">(#INTRODUCTION)</p>]
+					</div>
+					</BOUCLE_articles_recents>
+
+			</div> <!-- end leftMainParagraph -->
+			</B_articles_recents>		
+
+
+
+		[(#REM) Articles de la rubrique ]
+				<B_articles>
+				<div class="leftParagraph">
+					[<p class="pagination">(#PAGINATION)</p>]
+					<ul class="circle">
+						<BOUCLE_articles(ARTICLES) {id_groupe IN 1,2,3,4,5}{par date}{inverse} {pagination}{doublons}{lang}{id_mot ?}{id_groupe ?}>
+						<li>
+							<a href="#URL_ARTICLE">#TITRE</a><small><BOUCLE_pays(MOTS){id_article}{id_groupe IN 1,2,3,4,5}>- #TITRE</BOUCLE_pays> [ - (#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+						</li>
+						</BOUCLE_articles>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+				</B_articles>

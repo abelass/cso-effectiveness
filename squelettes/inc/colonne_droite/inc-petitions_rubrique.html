@@ -1,0 +1,26 @@
+[(#REM)Liste les forums de la langue]	
+#SET{articles,#ARRAY{}}
+
+<BOUCLE_art(ARTICLES) {id_rubrique}>
+	<BOUCLE_art_lang(ARTICLES){id_article}{lang}>
+		[(#PETITION|oui)#SET{articles,#GET{articles}|array_merge{#ARRAY{#TITRE,#ID_ARTICLE}}}]
+	</BOUCLE_art_lang>
+		<BOUCLE_art_lang_or(ARTICLES){traduction}{origine_traduction}>
+					[(#PETITION|oui)#SET{articles,#GET{articles}|array_merge{#ARRAY{#TITRE,#ID_ARTICLE}}}]
+		</BOUCLE_art_lang_or>	
+	<//B_art_lang>
+</BOUCLE_art>
+
+#SET{articles_flip,#GET{articles}|array_flip}
+
+<B_petitions>
+	<div class="rightParagraph">
+		<h2><:endorse:></h2>
+		<BOUCLE_petitions(PETITIONS) {id_article IN #GET{articles}}>
+		<p><a href="#URL_ARTICLE">[(#GET{articles_flip}|valeur_tableau{#ID_ARTICLE})]</a></p>
+		</BOUCLE_petitions>
+	</div>
+</B_petitions>
+
+
+

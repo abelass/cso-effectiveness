@@ -1,0 +1,339 @@
+#CACHE{0}
+#HTTP_HEADER{Content-Type: text/html}
+[(#REM)
+<!--
+/**********************************************************
+* Ce squelette pour spip-listes    
+* Patron: nouveautes.html liste les dernieres nouveautes
+* Ce squelette affiche les articles et breves publies depuis la date passee en reference
+* Utilise une balise #DATE_MODIF_SITE
+* Precautions:                             
+* - ne pas envoyer des gabarits de plus de 10Ko
+* - ne pas placer de balises html <html><body> ni de fermeture </body></html>
+* ils seront ajoutes automatiquement a l'envoi du mail 
+* - mettre les style  CSS directement dans les balises pour etre sur qu'ils seront interpretes (meme par les webmails)
+* - les urls et liens images seront automatiquement converties en absolues
+*  ex. rubrique5.html -> http://www.monsite.org/rubrique5.html
+*
+* La balise suivante est utile pour generer un message vide (non envoye) si il n'y a pas de nouveautes depuis la date indiquee
+* [ Affichage ici (#DATE_MODIF_SITE|strtotime|>{[(#ENV{date}|strtotime)]}|?{' ',''})  Affichage ici ]
+*
+***********************************************************/
+-->
+]
+<BOUCLE_compte(COURRIERS){id_liste=1}/>
+#SET{compteur,#TOTAL_BOUCLE}
+<//B_compte>
+<BOUCLE_courrier(COURRIERS){0,1}{!par id_courrier}>
+#SET{id_courrier,#ID_COURRIER}
+</BOUCLE_courrier>
+[ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+	<title>Open Forum for CSO Developement Effectiveness</title>
+	<LINK REL="SHORTCUT ICON" TYPE="image/ico" HREF="favicon.ico">
+	<link REL="ICON" TYPE="image/ico" HREF="favicon.ico">
+	
+<style type="text/css">
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 90%;	
+	font-family: Arial, Helvetica, Verdana, Sans serif;
+	color:#486773;
+	
+}
+
+#newsletter {
+	width:100%;
+	margin:35px 0 0 0;
+	padding:0;
+}
+
+#newsletter td {
+	padding:0 20px;
+}
+
+#correctly {
+	padding: 10px 12px 0 0;
+	letter-spacing:0.1em;
+	text-align:right;
+}
+
+#correctly p {
+	margin:0;
+	padding:0;
+	font-size:80%;
+}
+
+#correctly a,
+#correctly a:link,
+#correctly a:visited {
+	text-decoration:underline;
+}
+
+#correctly a:hover, 
+#correctly a:focus, 
+#correctly a:active {
+	color:#f06;
+}
+.right {
+	text-align:right;
+}
+
+.right p {
+	font-size:80%;
+}
+
+.IntroParagraph {
+	font-size:90%;
+	border:1px solid #9c0;
+	margin:10px 0 40px 0;
+}
+
+ul.contentOverview {
+	float:left;
+	width:235px;
+	font-size:90%;
+	margin:10px 0 40px 0;
+}
+
+ul.contentOverview li {
+	list-style-type:none;
+	background:url(img/carre.gif);
+	background-position:top left;
+	background-repeat:no-repeat;
+	padding-left: 15px;
+	letter-spacing:0.02em;
+	line-height:180%;
+}
+
+.Paragraph {
+	font-size:90%;
+	border-top:1px dashed #9c0;
+	border-bottom:1px dashed #9c0;
+	margin-bottom:40px;
+}
+
+.photoTable {
+	margin:10px 0 10px -10px;
+	padding:0;
+}
+
+.photo {
+	font-size:80%;
+	text-align:center;
+	margin:0;
+	padding:0;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+	margin: 10px;
+	padding-bottom:10px;
+	letter-spacing:0.02em;
+}
+
+p {
+	font-size: 1.2em/1.8em;
+	line-height:1.3em;
+	letter-spacing:0.02em;
+	margin-right:10px;
+}
+
+a, a:link, a:visited {
+	color:#486773;
+	text-decoration:underline;
+}
+
+a:hover, a:focus, a:active {
+	color:#f06;
+	text-decoration:underline;
+}
+
+h1 {
+	font-size: 200%;
+	color:#f06;
+	letter-spacing:0.04em;
+	font-weight:lighter;
+	margin-bottom:35px;
+}
+
+h2 {
+	font-size: 130%;
+	color:#f06;
+	font-weight:lighter;
+	letter-spacing:0.04em;
+}
+
+h3 {
+	font-size: 120%;
+	color:#f06;
+	font-weight:lighter;
+	letter-spacing:0.04em;
+}
+
+h3 a {
+	color:#f06;
+	text-decoration:none;
+}
+
+h3 a:link {
+	color:#f06;
+	text-decoration:none;
+}
+
+h3 a:visited {
+	color:#f06;
+	text-decoration:none;
+}
+
+h4 {
+	font-size: 120%;
+	font-weight:lighter;
+	margin-top:0;
+	margin-bottom:0;
+	padding-top:0;
+	padding-bottom:0;
+	letter-spacing:0.04em;
+}
+
+h5 {
+	font-size: 120%;
+	font-weight:lighter;
+	margin-top:0;
+	margin-bottom:0;
+	padding-top:0;
+	padding-bottom:0;
+	letter-spacing:0.04em;
+	color:#9c0;
+}
+
+h5 a {
+	color:#9c0;
+	text-decoration:none;
+}
+
+h5 a:link {
+	color:#9c0;
+	text-decoration:none;
+}
+
+h5 a:visited {
+	color:#9c0;
+	text-decoration:none;
+}
+
+.clear {
+	clear:both;
+	padding:0px;
+	margin:0px;
+	height:0px;
+}
+
+img {
+	border: none;
+}
+
+#footer  {
+	margin:0px;
+	padding: 0 0 20px 0;
+	color: #7f949d;
+	font-size:80%;
+	line-height:120%;
+	letter-spacing:0.02em;
+}
+
+#footer a,
+#footer a:link,
+#footer a:visited {
+	color: #7f949d;
+}
+
+#footer a:focus,
+#footer a:active,
+#footer a:hover {
+	color: #486773;
+}
+
+</style>
+
+</head>
+
+<body>
+#SET{mois,<?php echo date('m');?>}
+#SET{annee,<?php echo date('Y');?>}
+
+
+
+
+<table id="newsletter" cellspace="0" cellpadding="0" border="0">
+	<tr>
+		<td width="380"><img src="http://www.cso-effectiveness.org/squelettes/styles/img/cso_logo_small_en.gif" width="380" height="72" border="0"></td>
+		<td class="right"><h1>#ENV{sujet}</h1>
+			<p>Si ce courrier ne s’affiche pas correctement, <nobr>veuillez clickez [<a href="(#TEST|trim|generer_url_public{page=courrier&id_courrier=[(#GET{id_courrier}|plus{1})]})"
+	>ici</a>]</nobr></p>
+		</td>
+	</tr>		
+(#DATE_MODIF_SITE|strtotime|>{[(#ENV{date}|strtotime)]}|?{' ',''})
+]
+
+
+	
+	 <B_articles>
+	 	<tr>
+
+				
+				<td valign="top"><div class="IntroParagraph">
+
+	<p>C’est la lettre d’information mensuelle du Forum sur l’efficacité du développement des OSC. Il est une publication libre et en ligne destinée à partager de l’information sur des questions liées à l’efficacité des organisations de la société civile en général et du processus sur l’efficacité des OSC en particulier.<br>
+	Visitez notre site web : <a href="http://www.cso-effectiveness.org">www.cso-effectiveness.org</a></p>
+
+	<p>Merci d’envoyer vos contributions, commentaries et questions à <a href="mailto:cso-eff@concordeurope.org">cso-eff@concordeurope.org</a>.</p>
+
+
+
+
+
+<p> Nr [(#GET{compteur}|plus{1})], [(#GET{mois})]/[(#GET{annee})]/</p>
+
+				</div></td>
+			</tr>	
+			</table>
+		</td>
+		
+	</tr>	
+	 <td colspan="2"><div class="Paragraph">
+	 <BOUCLE_articles(ARTICLES){age_relatif<0}{par date}{inverse}{lang=fr}>
+	 [<h3><a name="1"></a>(#TITRE|supprimer_numero)</h3>]
+	 <h4><small>[(#DATE|affdate)]<B_auteur-s>, <:par_auteur:>  
+	 <BOUCLE_auteur-s(AUTEURS){id_article}{', '}><a href="[(#REM|trim|generer_url_public{auteur#ID_AUTEUR})]" title="Consulter le profil de cet auteur">#NOM</a></BOUCLE_auteur-s></small></h4>
+	 <p>#INTRODUCTION<br>
+		<a href="[(#TEST|trim|generer_url_public{page=article&id_article=#ID_ARTICLE})]">Read more</a></p>
+	 <p>
+	 </BOUCLE_articles>
+	 </div></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		<div id="footer">Vous avez reçu cet e-mail parce que vous êtes sur la liste d’envoi du Forum sur l’efficacité du éveloppement des OSC. Commentaires, suggestions et contributions peuvent être envoyées à <a href="mailto:cso-eff@concordeurope.org">cso-eff@concordeurope.org</a></div></td>
+	</tr>
+</table>	
+	</B_articles>
+
+[
+(#DATE_MODIF_SITE|strtotime|>{[(#ENV{date}|strtotime)]}|?{' ',''})
+	</div>
+
+</body>
+
+</html> 
+]

@@ -1,0 +1,62 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><:plan_site:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inc/inc-head}>
+<meta name="robots" content="none" />
+</head>
+
+<body class="page_plan">
+<div id="page-wrap">
+		<div id="inside">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}>
+
+<div id="main-content">
+	[(#REM) Fil d'Ariane ]
+	<div id="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:plan_site:></div>
+
+<div class="content">
+	<div class="twoColumnsRight">	
+		<INCLURE {fond=inc/colonne_droite/inc-articles_relationnes_rubrique}{id_rubrique}{id_mot=#ENV{id_mot}} {id_groupe=#ENV{id_groupe}}>			
+		<INCLURE {fond=inc/colonne_droite/inc-derniers_messages}>
+		<INCLURE {fond=inc/colonne_droite/inc-derniers_evenements}{id_mot=#ENV{id_mot}}{id_groupe=#ENV{id_groupe}}>
+	</div><!-- end twoColumnsRight -->
+
+	[(#REM) Le plan de site ci-dessous est a adapter selon les besoins. En particulier, on n'aura pas necessairement besoin de tous les elements (sous-rubriques, articles, breves et sites) ]
+	<div class="twoColumnsLeft">	
+		<div class="leftMainParagraph">
+			<h1 class="titre"><:plan_site:></h1>
+				<BOUCLE_secteurs(RUBRIQUES)  {racine} {id_rubrique !IN 12,9,5,56}{par num titre, titre}{tout}>
+				<h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+				[(#REM) Articles et sous-rubriques ]
+				<div class="contre-encart">
+					<B_rubriques>
+					<ul class="circle">
+						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}{tout}>
+						<li><strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
+							<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+						</li>
+						</BOUCLE_rubriques>
+					</ul>
+					</B_rubriques>
+
+				</div><!-- fin contre-encart -->
+
+				</BOUCLE_secteurs>
+
+						</div><!-- end twoColumnsLeft -->
+				
+</div><!-- end content -->
+<div class="clear"></div>
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- end main-content -->		
+</div><!-- end inside -->	
+</div><!-- page-wrap -->
+</body>
+</html>

@@ -1,0 +1,41 @@
+<B_id_liste>
+	<BOUCLE_id_liste(LISTES) {statut IN 'liste','pub_jour','pub_hebdo','pub_7jours','pub_mensul','pub_mois','pub_an'}{id_liste=#ENV{id_liste}} {0,(#ENV{mode_login}|?{1,0})}>
+		[<fieldset>
+			[<legend>(#TITRE)</legend>]
+			(#TEXTE)
+		</fieldset>]
+	</BOUCLE_id_liste>
+</B_id_liste>
+
+<B_listes>
+	<fieldset>
+		<legend>[(#TOTAL_BOUCLE|=={1}|?{
+			<:spiplistes:abo_1_lettre:>
+				,<:spiplistes:listes_de_diffusion_:>})] : </legend>
+				<ul>
+					<BOUCLE_listes(LISTES) {statut IN 'liste','pub_jour','pub_hebdo','pub_7jours','pub_mensul','pub_mois','pub_an'}{0,(#ENV{mode_login}|?{100,0})}>
+						[(#TOTAL_BOUCLE|=={1}|?{' ',''})
+						<li>
+							[(#ENV{mode_modifier}|?{' ',''})
+							<label><input type="hidden" name="list&#91;&#93;" checked="checked" value="#ID_LISTE" />]
+								<span><:spiplistes:abonnement_seule_liste_dispo:>:<br /><strong>#TITRE</strong> [- <em>(#TEXTE|textebrut)</em>]</span>[(#ENV{mode_modifier}|?{' ',''})</label>]</li>
+							]
+							<BOUCLE_inscription(AUTEURS){tous}{id_liste}{id_auteur=#ENV{id_auteur}}></BOUCLE_inscription>
+							[(#TOTAL_BOUCLE|!={1}|?{' ',''})
+							<li>
+								[(#ENV{mode_modifier}|?{' ',''})<label class="block"><input [(#_inscription:TOTAL_BOUCLE|?{' ',''})checked="checked"] type="checkbox" name="list&#91;&#93;" value="#ID_LISTE" />]
+									<span>[<strong>(#TITRE)</strong>][ - <em>(#TEXTE|textebrut|couper{80})</em>]</span>[(#ENV{mode_modifier}|?{' ',''})</label>]</li>]
+						</BOUCLE_listes>
+					</ul>
+				</fieldset>
+				[(#COMPTEUR_BOUCLE|!={1}|?{'<!-- fin de liste -->',''})]
+			</B_listes>
+			[(#ENV{reponse_formulaire}|non)
+			[(#ENV{mode_login}|oui)<fieldset><:spiplistes:aucune_liste_publique:></fieldset>]
+				]
+				[(#ENV{reponse_formulaire}|oui)
+				[(#ENV{mode_login}|oui)<fieldset style="color:#000"><legend><:spiplistes:abo_1_lettre:></legend></fieldset>]
+					]
+				<//B_listes>
+				
+	<//B_id_liste>

@@ -1,0 +1,88 @@
+#CACHE{24*3600}
+[(#REM)Affiche les agendas et minutes de evenements]
+
+<BOUCLE_art(ARTICLES){id_article}>
+	
+[(#REM)Si la date du document est inférieure à la date de l'article, le doc est considéré comme agenda]
+
+	<B_agenda>
+	<br/>
+	<div class="leftParagraph">
+		<br/>
+		<h3><:agenda:></h3><br/>
+		<ul class="circle">
+			<BOUCLE_agenda(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {extension !IN png,jpg,gif}{date<=#DATE}>
+			<li><div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="download" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+				[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+			</li>
+			</BOUCLE_agenda>
+		</ul>
+	</div>
+	</B_agenda>
+	
+	[(#REM) Si pas de documents attaché, attache les documents des traductions des articles]
+	
+		<BOUCLE_traductions_head(ARTICLES){traduction}>				
+			<B_documents_joints_trad_head>
+			[(#REM) Met les balises html et titres]
+				<BOUCLE_documents_joints_trad_head(DOCUMENTS) {id_article} {mode=document}{extension !IN png,jpg,gif}{par taille} {exclus}{0,1}{date<=#DATE}>
+				#SET*{head1,<br/><div class="leftParagraph"><br/><h3>}
+				#SET*{head2,</h3>
+				<ul class="circle"><br/>}					
+				#SET{foot,</ul></div>}	
+				</BOUCLE_documents_joints_trad_head>
+		</BOUCLE_traductions_head>
+		#GET{head1,<div class="hidden">}<:agenda:>#GET{head2,</div>}
+			<BOUCLE_traductions(ARTICLES){traduction}>				
+				<BOUCLE_documents_joints_trad(DOCUMENTS) {id_article} {mode=document}{par num titre, date}{extension !IN png,jpg,gif} {date<=#DATE}>
+					<li><div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="download" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> [(#LANG|traduire_nom_langue)]  <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+						[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+					</li>
+				</BOUCLE_documents_joints_trad>
+			</BOUCLE_traductions>		
+		#GET{foot}
+	<//B_agenda>	
+	
+[(#REM)Si la date du document est postérieure à la date de l'article, le doc est considéré comme minutes]	
+	
+	<B_minutes>
+		<br/>
+		<div class="leftParagraph">
+			<br/>
+			<h3><:minutes:></h3><br/>
+			<ul class="circle">
+				<BOUCLE_minutes(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {extension !IN png,jpg,gif}{date>#DATE}>
+				<li><div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="download" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+					[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+				</li>
+				</BOUCLE_minutes>
+			</ul>
+		</div>
+	</B_minutes>
+	
+	[(#REM) Si pas de documents attaché, attache les documents des traductions des articles]
+	
+	<BOUCLE_traductions_head_minutes(ARTICLES){traduction}>				
+		<B_documents_joints_trad_head_minutes>
+			[(#REM) Met les balises html et titres]
+			<BOUCLE_documents_joints_trad_head_minutes(DOCUMENTS) {id_article} {mode=document}{extension !IN png,jpg,gif}{par taille} {exclus}{0,1}{date>#DATE}>
+				#SET*{head1,<br/><div class="leftParagraph"><br/><h3>}
+						#SET*{head2_minutes,</h3>
+					<ul class="circle"><br/>}					
+						#SET{foot_minutes,</ul></div>}	
+			</BOUCLE_documents_joints_trad_head_minutes>
+		</BOUCLE_traductions_head_minutes>
+		#GET{head1,<div class="hidden">}<:minutes:>#GET{head2_minutes,</div>}
+			<BOUCLE_traductions_minutes(ARTICLES){traduction}>				
+				<BOUCLE_documents_joints_trad_minutes(DOCUMENTS) {id_article} {mode=document}{par num titre, date}{extension !IN png,jpg,gif} {date>#DATE}>
+						<li><div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="download" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> [(#LANG|traduire_nom_langue)]  <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+							[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+						</li>
+				</BOUCLE_documents_joints_trad_minutes>
+			</BOUCLE_traductions_minutes>		
+	#GET{foot_minutes}	
+	<//B_minutes>	
+	
+
+</BOUCLE_art>
+

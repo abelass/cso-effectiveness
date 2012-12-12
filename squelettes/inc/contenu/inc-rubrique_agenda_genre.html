@@ -1,0 +1,57 @@
+	  [(#REM)Afficher les evenements du même style]
+[(#REM)Mélange les evenements ]
+[(#REM)Établit les rubriques qui contienne l'id du mot clé contenu dans l'url]
+<BOUCLE_rubrique_style(RUBRIQUES)  {id_mot=#ENV{id_mot}}{tout}>#SET{nom_auteur,#TITRE}
+[(#REM)Établit l'article le plus ancien de cette rubrique]
+<BOUCLE_auteurs_rubrique(ARTICLES) {id_rubrique}{0,1}{par date}>
+[(#REM)Établit l'auteur de cet article]
+<BOUCLE_auteur(AUTEURS){id_article}>
+[(#REM)Établit l'article du même auteur dans la section agenda (12)]
+<BOUCLE_article_principal(ARTICLES){id_rubrique=12} {id_auteur}>
+[(#REM)Affiche les évenements de ces auteurs , affichage par auteur]
+<BOUCLE_lesevenements_style_afficher(EVENEMENTS){par date}{id_article}{age_fin<=0}{doublons exclu}></BOUCLE_lesevenements_style_afficher>
+</BOUCLE_article_principal>
+</BOUCLE_auteur>
+</BOUCLE_auteurs_rubrique>
+<BOUCLE_auteur_alter2(AUTEURS){nom=#GET{nom_auteur}}>#SET{id_auteur,#ID_AUTEUR} </BOUCLE_auteur_alter2>
+<BOUCLE_article_principal2(ARTICLES){id_rubrique=12} {id_auteur=#GET{id_auteur}}>
+<BOUCLE_lesevenements2(EVENEMENTS)  {id_article}{par date}{statut=publie}{age_fin<=0}{doublons exclu}></BOUCLE_lesevenements2>
+</BOUCLE_article_principal2>
+<//B_auteurs_rubrique>
+</BOUCLE_rubrique_style>
+[(#REM)Filtre les evenement précedents]
+<BOUCLE_lesevenements_style_exclu(EVENEMENTS){doublons exclu}{doublons afficher}></BOUCLE_lesevenements_style_exclu>	  
+	  <B_lesevenements_genre>
+		
+<div class="events"><a href="[(#URL_RUBRIQUE{12}|parametre_url{page,agenda}|parametre_url{annee,[(#DATE_DEBUT|annee)]}|parametre_url{mois,[(#DATE_DEBUT|mois)]}|parametre_url{jour,1}|parametre_url{lang,#LANG})]" title="[(#DATE_DEBUT|nom_mois)]"><h3>[(#DATE_DEBUT|nom_mois)] [(#DATE_DEBUT|annee|unique)]</h3></a> 
+<ul>
+<BOUCLE_lesevenements_genre(EVENEMENTS){agendafull date_debut,date_fin, mois,  (#DATE_DEBUT|annee), (#DATE_DEBUT|mois)}{par date}{tout}{doublons afficher}>
+<li><BOUCLE_auteur_default(AUTEURS){id_article}><a href="[(#URL_AUTEUR|parametre_url{lang,#ENV{lang}})]" title="#AUTEUR">#NOM</a> - </BOUCLE_auteur_default><a href="[(#URL_ARTICLE|parametre_url{id_evenement,#ID_EVENEMENT}|parametre_url{date,#DATE_DEBUT})]" title="#TITRE">[(#TITRE|supprimer_numero|couper{80})]</a>
+ <br/><small>[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+  le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+[(#HORAIRE|=={oui}|?{
+   [(#REM) memes heures ?]
+     [(#DATE_DEBUT|=={#DATE_FIN}|?{ <:a:>  
+[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+   [(#REM) pas memes heures ?]
+     [(#DATE_DEBUT|!={#DATE_FIN}|?{<:from:> 
+[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] <:a:>
+[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+,''})]
+,
+ [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+[(#HORAIRE|=={oui}|?{ : 
+  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] <:a:> 
+[(#DATE_FIN|nom_jour)]
+  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{ : 
+  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]
+[-&nbsp;<:lieu:>&nbsp;: (#LIEU)] <BOUCLE_pays_genre(MOTS) {id_evenement}{id_groupe=1}>#TITRE</BOUCLE_pays_genre></small>
+</li>
+
+  </BOUCLE_lesevenements_genre>
+  </ul>
+			</div>
+	  </B_lesevenements_genre>
+	  <:no_event:>
+	  	  </B_lesevenements_genre>
+	  

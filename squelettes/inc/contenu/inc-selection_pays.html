@@ -1,0 +1,59 @@
+#CACHE{24*3600}
+[(#REM) Fait disparaître le menu de sélection si pas de résultat]
+<BOUCLE_groupe_mots_test(GROUPES_MOTS){id_groupe IN 1,2,3,4,5}{par titre}>
+<BOUCLE_articles_test(ARTICLES){id_groupe}{lang}{0,1}>
+#SET{style,style="display:visible;"}  
+</BOUCLE_articles_test>
+</BOUCLE_groupe_mots_test>
+
+           <form method="post">   
+	   
+	   [(#REM)Affiche le menu de sélection du continent]	   
+<B_mots_continents>	
+		<p class="SelectRight"><select id="menu6" class="forml" #GET{style,style="display:none;"}
+		onchange="go6()">
+		<BOUCLE_mots_continents_sel(GROUPES_MOTS){id_groupe}>
+<option selected="selected" value="">#TITRE</option>
+		</BOUCLE_mots_continents_sel>
+<option selected="selected" value=""><:select_continent:></option>
+		<//B_mots_continents_sel>		
+<BOUCLE_mots_continents(GROUPES_MOTS){id_groupe IN 1,2,3,4,5}{par titre} {exclus}>
+
+<B_continents>
+
+[<option value="[(#URL_RUBRIQUE{9}|parametre_url{id_groupe,#ID_GROUPE}|parametre_url{lang,#ENV{lang}})]#liste">(#TITRE)</option>]
+<BOUCLE_continents(ARTICLES)  {id_groupe}{lang}>
+</BOUCLE_continents>
+</BOUCLE_mots_continents>
+		</select> 
+</B_mots_continents>	   
+
+&nbsp; 	   
+	   [(#REM)Affiche le menu de sélection du pays]	   
+	   
+<B_mots2>	
+		<select id="menu2" class="forml" #GET{style,style="display:none;"}
+		onchange="go2()">
+<BOUCLE_pays2(MOTS) {id_mot=#ENV{id_mot}}{0,1}>[<option selected="selected" value="">(#TITRE|unique)</option>] </BOUCLE_pays2>
+<option selected="selected" value=""><:select_country:></option><//B_pays2>		
+<BOUCLE_mots2(MOTS){id_groupe !IN 6,7,8,9}{id_groupe ?}{par titre}{exclus}>
+<B_articles2>
+[(#ID_MOT|!=={#ENV{id_mot}})<option value="[(#URL_RUBRIQUE{9}|parametre_url{id_mot,#ID_MOT}|parametre_url{lang,#ENV{lang}})]#liste">#TITRE</option>]
+<BOUCLE_articles2(ARTICLES){id_mot}{lang}{0,1}>
+</BOUCLE_articles2>
+</BOUCLE_mots2>
+		</select> </p>
+</B_mots2>
+
+
+
+
+
+    </form> 
+    
+
+
+
+
+
+

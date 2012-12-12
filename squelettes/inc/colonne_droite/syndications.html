@@ -1,0 +1,12 @@
+[(#REM) Sur le Web ]
+<B_syndic>
+<div class="rightParagraph">
+
+<BOUCLE_sites(SITES){id_syndic=5}>
+	<h2><a class="pop_up"  href="#URL_SITE" title="#NOM_SITE"><BOUCLE_rub(RUBRIQUES){id_rubrique}>#TITRE</BOUCLE_rub></a></h2>
+</BOUCLE_sites>
+	<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic=5} {age<180} {par date}{inverse} {0,6}>
+		<p>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend)"] class="spip_out pop_up">#TITRE</a></p>
+	</BOUCLE_syndic>
+</div>
+</B_syndic>				

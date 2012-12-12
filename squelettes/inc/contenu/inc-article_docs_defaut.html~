@@ -1,0 +1,41 @@
+#CACHE{24*3600}
+<BOUCLE_art(ARTICLES){id_article}>
+	<B_documents_joints>
+	<br/>
+	<div class="leftParagraph">
+		<br/>
+		<h3><:titre_documents_joints:></h3><br/>
+		<ul class="circle">
+		<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {extension !IN png,jpg,gif}>
+			<li><div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+				[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+			</li>
+		</BOUCLE_documents_joints>
+		</ul>
+	</div>
+	</B_documents_joints>
+	[(#REM) Si pas de documents attaché, attache les documents des traductions des articles]
+	<BOUCLE_traductions_head(ARTICLES){traduction}>				
+		<B_documents_joints_trad_head>
+			[(#REM) Met les balises html et titres]
+			<BOUCLE_documents_joints_trad_head(DOCUMENTS) {id_article} {mode=document}{extension !IN png,jpg,gif}{par taille} {exclus}{0,1}>
+						#SET*{head1,<br/><div class="leftParagraph"><br/><h3>}
+								#SET*{head2,</h3>
+							<ul class="circle"><br/>}					
+								#SET{foot,</ul></div>}	
+					</BOUCLE_documents_joints_trad_head>
+				</BOUCLE_traductions_head>
+				#GET{head1,<div class="hidden">}<:titre_documents_joints:>#GET{head2,</div>}
+					<BOUCLE_traductions(ARTICLES){traduction}>				
+						<BOUCLE_documents_joints_trad(DOCUMENTS) {id_article} {mode=document}{par num titre, date}{extension !IN png,jpg,gif} >
+							<li>
+								<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> [(#LANG|traduire_nom_langue)]  <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+										[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+									</li>
+								</BOUCLE_documents_joints_trad>
+							</B_documents_joints_trad>
+						</BOUCLE_traductions>		
+						#GET{foot}
+			<//B_documents_joints>
+</BOUCLE_art>
+

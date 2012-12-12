@@ -1,0 +1,34 @@
+#CACHE{24*3600}
+
+[(#REM) Portfolio : album d'images ]
+<B_documents_portfolio>
+	<div class="leftParagraph" id="documents_portfolio">
+			<BOUCLE_documents_portfolio(DOCUMENTS) {id_article}  {extension IN png,jpg,gif} {par num titre, date}>
+				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"] rel="gallerie" class="nyroceros">(#FICHIER|image_reduire_recadre{200,150}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+			</BOUCLE_documents_portfolio>
+	</div>
+</B_documents_portfolio>
+
+<BOUCLE_afficher_document(DOCUMENTS) {id_document}{id_article} {tout}{extension IN png,jpg,gif}>
+[(#MODELE{emb}|image_reduire{500,0})]
+</BOUCLE_afficher_document>
+
+<B_documents_portfolio2>
+<div class="leftParagraph"  id="documents_portfolio">
+	<BOUCLE_documents_portfolio2(DOCUMENTS) {id_article} {mode=document}{extension IN png,jpg,gif} {par num titre, date}{doublons}{vu=non}>[
+	<a href="(#URL_DOCUMENT)" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE
+		|parametre_url{id_document,#ID_DOCUMENT}
+		)]#documents_portfolio';return false;"[ class="(#EXPOSER)"][ title="(#TITRE|attribut_html|couper{80})"]>[(#FICHIER
+		|image_reduire{0,100}
+		|inserer_attribut{class,spip_logos}
+		|inserer_attribut{alt,[(#TITRE|attribut_html|couper{80})]})]</a>
+	]</BOUCLE_documents_portfolio2>
+</div>
+</B_documents_portfolio22>
+
+[(#REM)
+	Afficher en grand le document demande dans l'URL
+]
+<BOUCLE_afficher_document2(DOCUMENTS) {id_document}{id_article} {mode=document}{extension IN png,jpg,gif}>
+[(#MODELE{emb}|image_reduire{500,0})]
+</BOUCLE_afficher_document2>

@@ -1,0 +1,42 @@
+[(#REM) Articles de la rubrique ]
+
+	<BOUCLE_rub(RUBRIQUES){id_parent}{par num titre}>
+	<B_articles>
+		<div class="leftParagraph">
+			<h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+			[<p class="pagination">(#PAGINATION)</p>]
+			<ul class="circle">
+			<BOUCLE_articles(ARTICLES) {id_rubrique}{par date}{inverse} {pagination 20}{lang}>
+				<li>[(#TEXTE|?{<a href="[(#URL_ARTICLE|parametre_url{"lang",#ENV{lang}})]">#TITRE</a>,#TITRE})]
+					<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+				<B_afficher_document>
+				&nbsp;:&nbsp;					
+				<BOUCLE_afficher_document(DOCUMENTS) {id_article} {mode=document}>
+					<span><a href="#URL_DOCUMENT" title="#TITRE"><:download:></a> (#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</span></li>
+				</BOUCLE_afficher_document>    
+			</BOUCLE_articles>
+				</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+	</B_articles>
+	</BOUCLE_rub>
+		<B_articles_sr>
+		<div class="leftParagraph">
+			[<p class="pagination">(#PAGINATION)</p>]
+			<ul class="circle">
+			<BOUCLE_articles_sr(ARTICLES) {id_rubrique}{par date}{inverse} {pagination 20}{lang}>
+				<li>[(#TEXTE|?{<a href="[(#URL_ARTICLE|parametre_url{"lang",#ENV{lang}})]">#TITRE</a>,#TITRE})]
+					<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+				<B_afficher_document_sr>
+				&nbsp;:&nbsp;					
+				<BOUCLE_afficher_document_sr(DOCUMENTS) {id_article} {mode=document}>
+					<span><a href="#URL_DOCUMENT" title="#TITRE"><:download:></a> (#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</span></li>
+				</BOUCLE_afficher_document_sr>    
+			</BOUCLE_articles_sr>
+				</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+	</B_articles_sr>
+	
+<//B_rub>
+

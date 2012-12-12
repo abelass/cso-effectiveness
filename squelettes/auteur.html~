@@ -1,0 +1,57 @@
+#CACHE{86400}
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#NOM|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#BIO|couper{150}|textebrut)" />]
+<INCLURE{fond=inc/inc-head}>
+</head>
+
+<body class="page_auteur">
+<div id="page-wrap">
+		<div id="inside">
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}>
+
+<div id="main-content">
+	[(#REM) Fil d'Ariane ]
+	<div id="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_auteurs:>[ &gt; (#NOM|couper{80})]</div>
+
+<div class="content">
+		<div class="twoColumnsRight">	
+<INCLURE {fond=inc/colonne_droite/inc-articles_relationnes_rubrique}{id_rubrique}{id_mot=#ENV{id_mot}} {id_groupe=#ENV{id_groupe}}>			
+<INCLURE {fond=inc/colonne_droite/inc-derniers_messages}>
+<INCLURE {fond=inc/colonne_droite/inc-derniers_evenements}{id_mot=#ENV{id_mot}}{id_groupe=#ENV{id_groupe}}>
+				</div><!-- end twoColumnsRight -->
+				
+		[(#REM) Contenu principal : affichage de l'auteur ]
+				<div class="twoColumnsLeft">	
+				<div class="leftMainParagraph">
+				<h1 class="#EDIT{qui} titre">#NOM</h1>
+				[<div class="logo">(#LOGO_AUTEUR||image_reduire{200,200})</div>]
+				[<p class="#EDIT{hyperlien} soustitre"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
+			[<div class="#EDIT{bio} texte">(#BIO)</div><br />]
+
+			[<div class="encart">
+			(#FORMULAIRE_ECRIRE_AUTEUR)
+			</div><!-- fin encart -->]
+
+			[(#REM) Articles de l'auteur ]
+
+			<INCLURE {fond=inc/contenu/inc-auteurs_articles}{env}{ajax}>
+			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+				</div><!-- end twoColumnsLeft -->
+				
+</div><!-- end content -->
+<div class="clear"></div>
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+</div><!-- end main-content -->		
+</div><!-- end inside -->	
+</div><!-- page-wrap -->
+</body>
+</html>
+</BOUCLE_auteur_principal>

@@ -1,0 +1,7 @@
+[(#REM) Donne un array des traduction des rubriques]
+#SET{id_rubriques,#ARRAY}
+
+<BOUCLE_rubs_trads(RUBRIQUES){id_trad}{id_trad!=0}{tout}>
+#SET_MERGE{id_rubriques,#GET{id_rubriques},#ARRAY{#COMPTEUR_BOUCLE,#ID_RUBRIQUE}}
+</BOUCLE_rubs_trads>
+[(#GET{id_rubriques}|serialize)]

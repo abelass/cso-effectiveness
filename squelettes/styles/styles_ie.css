@@ -1,0 +1,80 @@
+/* -- CSS definition for Open Forum for CSO Developement Effectiveness InternetExplorer --- */
+
+ul#utilities {
+	margin:0 0 0 20px;
+	padding:20px 0 0 0;
+	line-height:0.6em;
+	font-size:95%;
+}
+
+div#mainNavi {
+	margin:0 0 0 205px;
+}
+
+#SubNavi li ul {
+	margin: 0 0 0 -11px;
+}
+
+#SubNavi li li {
+	width: 12em;
+}
+
+#SubNavi li:hover, #SubNavi li.sfhover {
+	background: #fff;
+}
+
+
+.formulaire_recherche input {
+	padding-right:2px;
+}
+
+.formulaire_spip fieldset {width:93%;}
+fieldset.ie {
+width:98%;
+}
+
+ul#utilities a,
+ul#utilities a:link,
+ul#utilities a:visited,
+ul#utilities a:focus,
+ul#utilities a:active,
+ul#utilities a:hover,
+ul#utilities li a.on, 
+ul#utilities li a:link.on, 
+ul#utilities li a:visited.on {
+	padding:1px 0 1px 0;
+	margin-left:15px;
+}
+#main-content {
+	z-index:0;
+}
+	
+#content {
+	z-index:1000;
+	background:url(img/space.gif);
+	background-position:top left;
+	background-repeat:repeat;	
+}
+#ie-container {
+	background:url(img/space.gif);
+	background-position:top left;
+	background-repeat:repeat;	
+}
+
+.SelectRight {
+	text-align:right;
+	margin-top:10px;
+	width:95%;
+	background:url(img/space.gif);
+	background-position:top left;
+	background-repeat:repeat;
+}
+#main-content{
+	background-image: none;
+	
+}
+#SubNavi li li ul {
+    position: absolute;
+    margin-left:5em;
+    margin-top:-3em;    
+  }

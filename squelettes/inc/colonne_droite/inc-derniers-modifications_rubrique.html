@@ -1,0 +1,20 @@
+<B_revisions>
+<div style="font-size: small;">
+<a id="revisions" name="revisions"></a>
+<h2>Derniers changements</h2>
+<ul>
+<BOUCLE_revisions(VERSIONS articles){branche}{par date}{inverse}{statut=publie}{0,10}>
+
+<li>
+[(#SET{gras,[(#ID_ARTICLE|unique|?{b})]})]
+[<(#GET{gras})>]<a href="[(#URL_ARTICLE|parametre_url{id_version,#ID_VERSION})]"
+rel="noindex,nofollow" title="version #ID_VERSION">#TITRE</a>[</(#GET{gras})>]
+
+<span style='color:gray;'>&mdash; [<abbr title="[(#DATE|date_iso)]">(#DATE|date_relative)</abbr>], [(#ID_AUTEUR|affiche_auteur_diff)]
+</span>
+</li>
+
+</BOUCLE_revisions>
+</ul>
+</div>
+</B_revisions>

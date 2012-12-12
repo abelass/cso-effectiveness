@@ -1,0 +1,9 @@
+*.class
+*.pyc
+*.pyo
+.svn
+_svn
+IMG
+local
+connect.php
+tmp

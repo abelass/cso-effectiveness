@@ -1,0 +1,8 @@
+<BOUCLE_periode(EVENEMENTS)
+	{agendafull date_debut, date_fin, periode,
+	#ENV{annee}, #ENV{mois}, #ENV{jour},
+	#ENV{annee_fin}, #ENV{mois_fin}, #ENV{jour_fin}}{id_rubrique?}>[
+(#DATE_DEBUT|Agenda_memo_full{#DATE_FIN,#TITRE,#DESCRIPTIF,#LIEU,[(#SELF|parametre_url{annee,[(#DATE|annee)]}|parametre_url{mois,[(#DATE|mois)]}|parametre_url{type,jour})][(#URL_ARTICLE|parametre_url{id_evenement,#ID_EVENEMENT}|parametre_url{date,#DATE_DEBUT})], 'calendrier-couleur6'})
+]</BOUCLE_periode>[(#DATE|
+	Agenda_affiche_full{<:aucun_article:>, 'periode', 'calendrier-couleur6'}
+)]<//B_periode>

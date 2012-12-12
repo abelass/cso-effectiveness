@@ -1,0 +1,30 @@
+[(#REM)Liste les forums de la langue]				
+<B_shortcuts>
+	<div class="rightParagraph">
+		<h2><:shortcuts:></h2>
+		<BOUCLE_shortcuts(SELECTION_OBJETS) {lang} {par ordre}>
+		<p>[(#ID_OBJET|url_objet{#OBJET})]</p>
+		</BOUCLE_shortcuts>
+	</div>
+</B_shortcuts>
+
+[(#REM) Les articles du blog]
+
+#SET{id_rubrique,(#INCLURE{fond=inc/traductions_rubriques}{id_trad=8})}
+
+
+<B_articles>
+	<div class="rightParagraph">
+		<h2><:blog_dernieres_entres:></h2>	
+			<BOUCLE_articles(ARTICLES){id_rubrique IN #GET{id_rubrique}|unserialize}{!par date}{0,10}>
+				<p><a href="#URL_ARTICLE">#TITRE</a></p>
+				</BOUCLE_articles>
+		</div>
+	</B_articles>
+
+[(#REM) deactivated
+<div style=" text-align:center;" >
+	<iframe  src="http://www.eventbrite.com/countdown-widget?eid=1535999215" frameborder="0" height="326" width="220" marginheight="0" marginwidth="0" scrolling="no" >
+	</iframe>
+	<div style="font-family:Helvetica, Arial; font-size:10px; padding:5px 0 5px; margin:2px; width:195px; text-align:center;" ><a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.com/features?ref=ecount" >Event registration</a><span style="color:#ddd;" > for </span><a style="color:#ddd; text-decoration:none;" target="_blank" href="http://openforumglobalassembly.eventbrite.com?ref=ecount" >2nd Global Assembly of the Open Forum for CSO Development Effectiveness</a></div>
+</div>]

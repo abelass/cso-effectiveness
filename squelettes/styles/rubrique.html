@@ -1,0 +1,116 @@
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}{tout}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="description" content="[(#INTRODUCTION|?{[(#INTRODUCTION|couper{150}|textebrut)],[(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)]})]<B_mots_cles>, <BOUCLE_mots_cles(MOTS) {id_rubrique}{', '}>#TITRE</BOUCLE_mots_cles>" />
+<INCLURE{fond=inc/inc-head}>
+[(#REM) Lien vers le flux RSS de la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:> [#ENV{lang}]" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE}|parametre_url{lang,#ENV{lang}})]" />
+</head>
+
+<body class="page_rubrique">
+	<div id="page-wrap">
+		<div id="inside">
+		
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}{id_rubrique}>
+	
+			<div id="main-content">
+				<div id="ie-container">
+	[(#REM) Fil d'Ariane ]
+			<div id="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]</div>
+
+				<div class="content">
+					<div class="twoColumnsRight">	
+[(#ID_RUBRIQUE|!=={'12'}|?{' ',''})<INCLURE {fond=inc/colonne_droite/inc-articles_relationnes_rubrique}{id_rubrique}{id_mot=#ENV{id_mot}} {id_groupe=#ENV{id_groupe}}>]			
+<INCLURE {fond=inc/colonne_droite/inc-derniers_messages}>
+<INCLURE {fond=inc/colonne_droite/inc-derniers_evenements}{id_mot=#ENV{id_mot}}{id_groupe=#ENV{id_groupe}}>
+					</div><!-- end twoColumnsRight -->
+		
+		
+		[(#REM) Contenu principal : contenu de la rubrique ]
+				<div class="twoColumnsLeft">	
+				<div class="leftMainParagraph">
+				<h1 class="#EDIT{titre} titre">#TITRE</h1>
+				[<div class="logo">(#LOGO_RUBRIQUE||image_reduire{200,200})</div>]
+				[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+
+				[(#REM) Documents joints a la rubrique ]
+				<B_documents_joints>
+				<div id="documents_joints">
+					<h2><:titre_documents_joints:></h2>
+					<ul class="circle">
+						<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {par num titre, date} {doublons}>
+						<li>
+							<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+							[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+						</li>
+						</BOUCLE_documents_joints>
+					</ul>
+				</div>
+				</B_documents_joints>
+
+
+		[(#REM) Contenu rubrique Regions and Countries ]
+		[(#ID_RUBRIQUE|=={'9'}|?{' ',''})<INCLURE  {fond=inc/contenu/inc-selection_pays}{id_rubrique}{id_mot=#ENV{id_mot}}{id_groupe=#ENV{id_groupe}}></p><br/>
+		<INCLURE  {fond=inc/contenu/inc-worldmap}{id_rubrique}{id_mot=#ENV{id_mot}}{id_groupe=#ENV{id_groupe}}>
+		[(#ENV{id_mot}|=={''}|?{' ',''})[(#ENV{id_groupe}|=={''}|?{' ',''})<INCLURE  {fond=inc/contenu/inc-articles_rubrique_pays}{id_rubrique}{id_mot=#ENV{id_mot}}{id_groupe=#ENV{id_groupe}}>]]
+		[(#ENV{id_mot}|!=={''}|?{' ',''})<INCLURE  {fond=inc/contenu/inc-articles_rubrique_mots_selectionnees}{id_mot=#ENV{id_mot}}{id_groupe=#ENV{id_groupe}}>]
+		[(#ENV{id_groupe}|!=={''}|?{' ',''})<INCLURE  {fond=inc/contenu/inc-articles_rubrique_mots_selectionnees}{id_mot=#ENV{id_mot}}{id_groupe=#ENV{id_groupe}}>]
+		]
+	
+		[(#REM) Contenu rubrique Ressources ]	
+		[(#ID_RUBRIQUE|=={'7'}|?{' ',''})<p><INCLURE  {fond=inc/contenu/inc-selection_theme}{id_rubrique}{id_mot=#ENV{id_mot}}></p><br/>
+		<INCLURE  {fond=inc/contenu/inc-articles_rubrique}{id_rubrique}{id_mot=#ENV{id_mot}}{self=#SELF}>]
+				[(#ID_RUBRIQUE|=={'13'}|?{' ',''})<p><INCLURE  {fond=inc/contenu/inc-selection_theme}{id_rubrique}{id_mot=#ENV{id_mot}}></p><br/>
+		<INCLURE  {fond=inc/contenu/inc-articles_rubrique}{id_rubrique}{id_mot=#ENV{id_mot}}{self=#SELF}>]
+		[(#REM) Contenu rubrique Editing]	
+		[(#ID_RUBRIQUE|=={'2'}|?{' ',''})<INCLURE  {fond=inc/contenu/inc-articles_rubrique_editing}{id_rubrique}>]
+
+			
+		[(#REM) Formulaire inscription rubrique Newsletter ]		
+		[(#ID_RUBRIQUE|=={'12'}|?{#FORMULAIRE_ABONNEMENT,''})</div > <!-- end leftMainParagraph -->
+		<INCLURE  {fond=inc/contenu/inc-newsletter}{id_rubrique}{id_mot=#ENV{id_mot}}{self=#SELF}>]
+
+						
+				[(#REM) Sites de la rubrique ]
+				<B_sites>
+						<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+						<h3><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></h3>
+							<B_syndic>
+							<ul class="circle">
+								<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,5}>
+								<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+								</BOUCLE_syndic>
+							</ul>
+							</B_syndic>
+						</BOUCLE_sites>
+				</B_sites>
+
+				[(#REM) Proposer un site ]
+				#FORMULAIRE_SITE
+
+
+
+			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+				
+			[(#ID_RUBRIQUE|!=={'9'}|?{' ',''})[(#ID_RUBRIQUE|!=={'7'}|?{' ',''})[(#ID_RUBRIQUE|!=={'13'}|?{' ',''})[(#ID_RUBRIQUE|!=={'12'}|?{' ',''})</div > <!-- end leftMainParagraph -->]]]]
+				
+				</div><!-- end twoColumnsLeft -->
+				
+					</div><!-- end content -->
+					<div class="clear"></div>
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+				</div><!-- end ie-container -->
+			</div><!-- end main-content -->		
+		</div><!-- end inside -->	
+	</div><!-- page-wrap -->
+</body>
+</html>
+</BOUCLE_rubrique_principal>
+<INCLURE{fond=inc/inc-loginpublic}{self=#SELF}>
+<//B_rubrique_principal>

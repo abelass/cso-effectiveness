@@ -1,0 +1,27 @@
+#CACHE{24*3600}
+		[(#REM) LES titres de mots clés qui constituent les titres des newsletters]
+
+	<BOUCLE_liste(LISTES){id_liste IN 1,2,3}{lang}>
+	<BOUCLE_compteur(COURRIERS){id_liste}{type=auto}{par date}>#SET{compteur#ID_COURRIER,#COMPTEUR_BOUCLE}</BOUCLE_compteur>
+	<B_liste_newsletters>
+	<h2><:newsletters_archive:></h2>
+	[<p>(#PAGINATION)</p>]
+	<ul class="circle">	
+	<BOUCLE_liste_newsletters(COURRIERS){id_liste}{type=auto}{!par date}{pagination}>
+<li><h2><a href="spip.php?page=courrier&amp;id_courrier=#ID_COURRIER">#TITRE -  Nº #GET{compteur#ID_COURRIER}[ - ((#DATE|affdate_mois_annee))] </a></h2></li>
+	</BOUCLE_liste_newsletters>
+	</ul>
+	[<p>(#PAGINATION)</p>]
+	</B_liste_newsletters>	
+		</BOUCLE_liste>
+		
+
+
+
+
+
+		
+
+
+
+			

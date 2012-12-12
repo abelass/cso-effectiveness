@@ -1,0 +1,20 @@
+#CACHE{24*3600}
+
+<B_art>
+<div>	
+	<BOUCLE_art(ARTICLES){id_rubrique}>
+		<B_doc>
+		<div class="thumb">
+		<h2>#TITRE</h2>
+			
+		<BOUCLE_doc(DOCUMENTS){id_article}{extension IN jpg,png,gif}{par hasard}{tout}{0,1}>
+			[<a href="#URL_ARTICLE">(#FICHIER|image_reduire_recadre{200,150})</a>]
+		</BOUCLE_doc>
+		
+		</div>
+		</B_doc>
+		
+	
+	</BOUCLE_art>
+</div>	
+</B_art>

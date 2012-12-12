@@ -1,0 +1,8 @@
+<B_doc>
+	<div class="thumb">
+	<BOUCLE_doc(DOCUMENTS){id_rubrique IN #ENV{id_rubrique}}{extension IN jpg,png,gif}{par hasard}{tout}>
+		[<a href="#URL_ARTICLE" title="[(#GET{title}|textebrut)]">(#FICHIER|image_reduire_recadre{350,300}|inserer_attribut{class,cycle_pic})</a>]
+	</BOUCLE_doc>
+	
+	</div>
+</B_doc>
