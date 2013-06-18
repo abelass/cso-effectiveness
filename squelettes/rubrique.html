@@ -132,18 +132,13 @@ $("document").ready(function() {
       </div > <!-- end leftMainParagraph -->
     ]
 
-    [(#REM) Rubrique Open Forum Consultations  à priori désactivé  
-    [(#ID_TRAD|=={6}|oui)
-      <INCLURE  {fond=inc/contenu/inc-rubrique_open_forum_regions}{id_rubrique}{env}>
-      <INCLURE  {fond=inc/contenu/inc-rubrique_open_forum_themes}{id_rubrique}{env}>      
-      ]
-      ]
+
     
     [(#REM) Rubrique Blog]    
     [(#ID_TRAD|=={8}|oui)
       [(#REM) Calcul des rubriques traduites]
       #SET{id_rubrique,#INCLURE{fond=inc/traductions_rubriques}{id_trad}}
-      <INCLURE  {fond=inc/contenu/inc-rubrique_blog}{env}{ajax}{id_rubrique=#GET{id_rubrique}|unserialize}>
+      <INCLURE  {fond=inc/contenu/inc-rubrique_blog,id_rub=#ID_RUBRIQUE,env,ajax}{id_rubrique=#GET{id_rubrique}|unserialize}>
         ]
     
     [(#REM) Image Gallery]    
