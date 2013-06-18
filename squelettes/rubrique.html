@@ -55,8 +55,8 @@ $("document").ready(function() {
         <div class="#EDIT{texte} chapo">
           [(#ID_TRAD|=={91}|non)
           <div class="enviar">
-            #ENVIAR_EMAIL**
-            <INCLURE{fond=inc/contenu/share}{env}/>
+              #SET{texte,#TEXTE|couper{250}|textebrut}
+            <INCLURE{fond=inc/contenu/share,titre,url=#URL_RUBRIQUE,texte=#GET{texte},env}/>
           </div>
           ]
           [(#ID_TRAD|=={91}|oui)
