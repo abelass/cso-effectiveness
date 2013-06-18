@@ -53,8 +53,8 @@
           ]
         [<div class="#EDIT{texte} texte">
           <div class="enviar">
-            #ENVIAR_EMAIL**
-            <INCLURE{fond=inc/contenu/share,titre,url=#URL_ARTICLE,texte=[(#INTRODUCTION|textebrut)],env}/>
+            #SET{texte,INTRODUCTION|textebrut}
+            <INCLURE{fond=inc/contenu/share,titre,url=#URL_ARTICLE,texte=#GET{texte},env}/>
           </div>
           (#TEXTE|image_reduire{520,0})
           </div>]
