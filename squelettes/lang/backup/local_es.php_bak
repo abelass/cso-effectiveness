@@ -9,7 +9,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // A
 'a' => 'to',
 'a_partir_de' => 'de',
-'abonnement_explication' => 'Ingrese su correo electrónico en el siguiente espacio y seleccione la/las lista/s a las cuales desea suscribirse.',
 'about_site' => 'Bienvenido al Foro',
 'agenda' => 'Agenda',
 'agenda_complete' => 'Ver la agenda completa',
@@ -24,7 +23,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // B
 'back' => 'regresar',
-'blog_dernieres_entres' => 'Blog - Ultimas Entradas',
 
 
 // C
@@ -32,7 +30,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'consulter_versions' => 'Ver las diferentes versiones',
 'contact_par' => 'Contacto por',
 'contact_person' => 'Persona de contacto',
-'country' => 'País',
+'country_theme' => 'País / tema',
 
 
 // D
@@ -43,7 +41,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // E
 'edit' => 'Edita este evento',
-'editer_article' => 'Añade un blog',
 'editer_page' => 'Editar esta página',
 'en_construction' => 'En construcción',
 'etiquettes' => 'Las etiquetas',
@@ -53,10 +50,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'fr' => 'Francés',
 'from' => 'de',
 'future_events' => 'Eventos futuros',
-
-
-// I
-'inscription_newsletter' => 'Suscribción newsletter',
 
 
 // J
@@ -99,18 +92,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'select_continent' => 'Selecciona un continente',
 'select_country' => 'Selecciona un país',
 'select_theme' => 'Selecciona un tema',
-'shortcuts' => 'Acceso Rápido',
 'subscribe_newsletter' => 'Subscribate a nuestro boletín de noticias',
 'supprimer' => 'suprimir',
-
-
-// T
-'theme' => 'Asunto',
-
-
-// V
-'votre_adresse_mail' => 'Su email',
-'votre_email_' => 'Su correo electrónico:',
 
 
 // Y

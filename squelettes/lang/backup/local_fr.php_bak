@@ -9,7 +9,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // A
 'a' => 'à',
 'a_partir_de' => 'de',
-'abonnement_explication' => 'Entrez votre adresse email dans le champ ci-dessous et sélectionnez la ou les listes auxquelles vous souhaitez vous abonner.',
 'about_site' => 'Bienvenue au Forum Ouvert',
 'agenda' => 'Agenda',
 'agenda_complete' => 'Voir l\'agenda complète',
@@ -26,7 +25,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // B
 'back' => 'retour',
-'blog_dernieres_entres' => 'Blog - Dernières entrées',
 
 
 // C
@@ -34,7 +32,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'consulter_versions' => 'Voir les différentes versions',
 'contact_par' => 'Contact par',
 'contact_person' => 'Personne de contacte',
-'country' => 'Pays',
+'country_theme' => 'Pays / thème',
 
 
 // D
@@ -45,7 +43,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // E
 'edit' => 'Éditer cet évènenement',
-'editer_article' => 'Ajoutez un blog',
 'editer_page' => 'Editer cette page',
 'en_construction' => 'En construction',
 'etiquettes' => 'Les étiquettes',
@@ -55,10 +52,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'fr' => 'Français',
 'from' => 'de',
 'future_events' => 'Événements futurs',
-
-
-// I
-'inscription_newsletter' => 'Inscription Newsletter',
 
 
 // J
@@ -78,7 +71,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // N
 'news_site' => 'Nouvellles de ce site',
 'newsletters_archive' => 'Archive Lettres d\'informations',
-'no_event' => 'Actuellement il n\'y a pas dévènement planifié',
+'no_event' => 'Actuellement il n/\'y a pas d/\'évènement planifié',
 'nouveau' => 'Nouveau sur le site web du Forum Ouvert',
 
 
@@ -101,18 +94,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'select_continent' => 'Choisissez un continent',
 'select_country' => 'Select a country',
 'select_theme' => 'Choisissez un thème',
-'shortcuts' => 'Accès Rapide',
 'subscribe_newsletter' => 'Abonnez-vous à notre bulletin d\'actualité',
 'supprimer' => 'delete',
-
-
-// T
-'theme' => 'Sujet',
-
-
-// V
-'votre_adresse_mail' => 'Votre adresse email',
-'votre_email_' => 'Votre adresse email :',
 
 
 // Y

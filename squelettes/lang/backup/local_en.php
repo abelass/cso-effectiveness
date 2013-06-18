@@ -1,6 +1,6 @@
 <?php
 
-// This is a SPIP language file  --  Ceci est un fichier langue de SPIP nommé admin_lang genere le NOW()
+// This is a SPIP language file  --  Ceci est un fichier langue de SPIP nommé  genere le NOW()
 // langue / language = en
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
@@ -9,6 +9,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // A
 'a' => 'to',
 'a_partir_de' => 'from',
+'abonnement_explication' => 'Enter your email address in the box below and select the list or lists to which you wish to subscribe. ',
 'about_site' => 'Welcome to the Open Forum',
 'agenda' => 'Agenda',
 'agenda_complete' => 'See the complete agenda',
@@ -25,6 +26,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // B
 'back' => 'back',
+'blog_dernieres_entres' => 'Blog – Latest Entries',
 
 
 // C
@@ -33,7 +35,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_par' => 'Contact through',
 'contact_person' => 'Contact person',
 'country' => 'Country',
-'country_theme' => 'Country / theme',
 
 
 // D
@@ -44,6 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // E
 'edit' => 'Edit this event',
+'editer_article' => 'Post a blog entry',
 'editer_page' => 'Edit this page',
 'en_construction' => 'Under construction',
 'etiquettes' => 'The tags',
@@ -53,6 +55,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'fr' => 'French',
 'from' => 'from',
 'future_events' => 'Future events',
+
+
+// I
+'inscription_newsletter' => 'Subscribe to the Newsletter',
 
 
 // J
@@ -95,6 +101,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'select_continent' => 'Select a continent',
 'select_country' => 'Select a country',
 'select_theme' => 'Select a theme',
+'shortcuts' => 'Quick Links',
 'subscribe_newsletter' => 'Subscribe to our newsletter',
 'supprimer' => 'delete',
 
@@ -103,8 +110,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'theme' => 'Theme',
 
 
+// V
+'votre_adresse_mail' => 'Your email',
+'votre_email_' => 'Your email address:',
+
+
 // Y
 'your_email' => 'Your email'
+
 
 );
 

