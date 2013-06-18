@@ -21,15 +21,14 @@
 
 <div class="content">
 		<div class="twoColumnsRight">	
-<INCLURE {fond=inc/colonne_droite/inc-articles_relationnes_rubrique}{id_rubrique}{id_mot=#ENV{id_mot}} {id_groupe=#ENV{id_groupe}}>
-<INCLURE{fond=inc/colonne_droite/inc-shortcuts}{lang}>				
-<INCLURE {fond=inc/colonne_droite/inc-derniers_messages}>
-<INCLURE {fond=inc/colonne_droite/inc-derniers_evenements}{id_mot=#ENV{id_mot}}{id_groupe=#ENV{id_groupe}}>
+
 				</div><!-- end twoColumnsRight -->
 
 		[(#REM) Le plan de site ci-dessous est a adapter selon les besoins. En particulier, on n'aura pas necessairement besoin de tous les elements (sous-rubriques, articles, breves et sites) ]
-				<div class="twoColumnsLeft">	
-	#FORMULAIRE_ARTICLE
+				<div class="twoColumnsLeft">
+				  <div class="ajax"  >
+	               #FORMULAIRE_EDITION_PUBLIQUE{article,'',#ENV{id_rubrique},#ENV{redirect}} 
+	               </div>  
 				</div><!-- end twoColumnsLeft -->
 				
 </div><!-- end content -->

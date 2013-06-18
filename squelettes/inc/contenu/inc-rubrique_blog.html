@@ -24,7 +24,7 @@
         
     </div>
 	</BOUCLE_article>
-	<div class="editer_art"><a href="#URL_PAGE{publish}#formulaire_article"><:editer_article:></a></div>
+	<div class="editer_art"><a href="[(#URL_PAGE{publish}|parametre_url{redirect,#SELF}|parametre_url{id_rubrique,#ID_RUB})]#formulaire_article"><:editer_article:></a></div>
 	<INCLURE{fond=inc/contenu/inc-rubrique_blog_defaut}{env}{ajax}/>
 	<//B_article>
 	
