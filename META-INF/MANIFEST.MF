@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: cso-efectiveness
-Bundle-SymbolicName: cso-efectiveness
-Bundle-Version: 1.0.0.qualifier
