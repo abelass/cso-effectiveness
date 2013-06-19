@@ -21,10 +21,10 @@
 
       <div class="content">
         <div class="twoColumnsRight">  
-          <INCLURE {fond=inc/colonne_droite/inc-articles_relationnes} {env}/>
-          <INCLURE{fond=inc/colonne_droite/inc-shortcuts}{lang}>  
-          <INCLURE {fond=inc/colonne_droite/inc-derniers_messages}/>
-          <INCLURE {fond=inc/colonne_droite/inc-derniers_evenements}{id_mot=#ENV{id_mot}}/>
+          <INCLURE{fond=inc/colonne_droite/inc-articles_relationnes,env}/>
+          <INCLURE{fond=inc/colonne_droite/inc-shortcuts,lang}>  
+          <INCLURE{fond=inc/colonne_droite/inc-derniers_messages}/>
+          <INCLURE{fond=inc/colonne_droite/inc-derniers_evenements,id_mot=#ENV{id_mot}}/>
         </div><!-- end twoColumnsRight -->
         
     [(#REM) Contenu principal : contenu de l'article ]
